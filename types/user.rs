@@ -14,11 +14,10 @@ pub struct User {
     /// The list of guilds the user is in
     ///
     /// Only sent to the user.
-    pub guilds: Option<Vec<Guild>>
+    pub guilds: Option<Vec<Guild>>,
 
     /// User flags
     ///
     /// Bitmask of user info
-    /// 0:
     pub flags: i64,
 }
