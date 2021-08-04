@@ -1,4 +1,4 @@
-use crate::types::{User, Guild};
+use crate::types::{Guild, User};
 
 #[derive(Serialize, Deserialize)]
 pub struct Member {
