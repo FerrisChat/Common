@@ -1,12 +1,12 @@
-mod guild;
-mod user;
 mod channel;
+mod errors;
+mod guild;
 mod member;
 mod message;
-mod errors;
+mod user;
 
-pub use guild::Guild;
-pub use user::User;
 pub use channel::Channel;
+pub use guild::Guild;
 pub use member::Member;
 pub use message::Message;
+pub use user::User;
