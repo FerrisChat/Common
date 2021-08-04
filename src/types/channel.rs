@@ -1,3 +1,4 @@
+#[derive(Serialize, Deserialize)]
 pub struct Channel {
     /// The channel ID
     ///
