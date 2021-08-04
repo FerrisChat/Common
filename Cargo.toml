@@ -11,9 +11,9 @@ readme = "README.md"
 include = [
   "**/*.rs",
   "Cargo.toml",
-  ".gitignore",
-  "LICENSE",
-  "README.md"
+  "/.gitignore",
+  "/LICENSE",
+  "/README.md"
 ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
