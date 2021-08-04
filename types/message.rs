@@ -1,5 +1,6 @@
 use crate::types::Channel;
 
+#[derive(Serialize, Deserialize)]
 pub struct Message {
     /// The ID of the message
     ///

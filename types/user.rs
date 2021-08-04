@@ -1,5 +1,6 @@
 use crate::types::Guild;
 
+#[derive(Serialize, Deserialize)]
 pub struct User {
     /// The user's ID
     ///
