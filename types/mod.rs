@@ -3,6 +3,7 @@ mod user;
 mod channel;
 mod member;
 mod message;
+mod errors;
 
 pub use guild::Guild;
 pub use user::User;
