@@ -2,8 +2,8 @@
 pub struct Channel {
     /// The channel ID
     ///
-    /// 64 bit signed integer
-    pub id: i64,
+    /// 128 bit unsigned integer
+    pub id: u128,
 
     /// The user's name
     ///

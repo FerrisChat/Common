@@ -4,8 +4,8 @@ use crate::types::Guild;
 pub struct User {
     /// The user's ID
     ///
-    /// 64 bit signed integer
-    pub id: i64,
+    /// 128 bit unsigned integer
+    pub id: u128,
 
     /// The user's name
     ///
@@ -20,5 +20,5 @@ pub struct User {
     /// User flags
     ///
     /// Bitmask of user info
-    pub flags: i64,
+    pub flags: u128,
 }

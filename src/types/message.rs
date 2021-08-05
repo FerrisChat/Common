@@ -4,8 +4,8 @@ use crate::types::Channel;
 pub struct Message {
     /// The ID of the message
     ///
-    /// 64 bit unsigned integer
-    id: i64,
+    /// 128 bit unsigned integer
+    id: u128,
 
     /// The content of the message
     ///

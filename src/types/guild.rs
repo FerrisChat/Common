@@ -5,12 +5,12 @@ use crate::types::Member;
 pub struct Guild {
     /// Guild ID
     ///
-    /// 64 bit signed integer
-    pub id: i64,
+    /// 128 bit unsigned integer
+    pub id: u128,
 
     /// Owner ID
     ///
-    /// 64 bit signed integer
+    /// 128 bit unsigned integer
     pub owner_id: i64,
 
     /// Guild name
