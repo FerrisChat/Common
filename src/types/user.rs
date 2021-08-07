@@ -20,5 +20,5 @@ pub struct User {
     /// User flags
     ///
     /// Bitmask of user info
-    pub flags: u128,
+    pub flags: u64,
 }

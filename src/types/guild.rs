@@ -11,7 +11,7 @@ pub struct Guild {
     /// Owner ID
     ///
     /// 128 bit unsigned integer
-    pub owner_id: i64,
+    pub owner_id: u128,
 
     /// Guild name
     ///
