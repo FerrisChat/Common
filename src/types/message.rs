@@ -13,5 +13,5 @@ pub struct Message {
     pub content: String,
 
     /// The channel this message is in
-    pub channel: Channel,
+    pub channel: Option<Channel>,
 }
