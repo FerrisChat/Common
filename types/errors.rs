@@ -30,3 +30,9 @@ pub struct TooManyRequestsJson {
     /// as a lifetime limit has been hit for this IP address.
     pub retry_after: u128,
 }
+
+#[derive(Serialize, Deserialize)]
+// JSON returned along with HTTP 404 Not Found.
+pub struct NotFoundJson {
+    pub message: string,
+}
