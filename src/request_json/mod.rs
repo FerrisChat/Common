@@ -1,5 +1,5 @@
-mod users;
 mod guilds;
+mod users;
 
-pub use users::*;
 pub use guilds::*;
+pub use users::*;
