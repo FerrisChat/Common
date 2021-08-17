@@ -34,5 +34,5 @@ pub struct TooManyRequestsJson {
 #[derive(Serialize, Deserialize)]
 // JSON returned along with HTTP 404 Not Found.
 pub struct NotFoundJson {
-    pub message: string,
+    pub message: String,
 }
