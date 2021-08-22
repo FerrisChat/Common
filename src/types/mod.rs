@@ -6,6 +6,7 @@ mod member;
 mod message;
 mod model_type;
 mod user;
+mod ws;
 
 pub use auth::AuthResponse;
 pub use channel::Channel;
