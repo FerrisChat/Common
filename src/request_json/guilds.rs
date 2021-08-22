@@ -8,14 +8,15 @@ pub struct GuildCreateJson {
 }
 
 /// URL parameters accepted for GET /api/v0/guilds/{guild_id} (get guild)
+#[derive(Serialize, Deserialize)]
 pub struct GetGuildUrlParams {
     /// Return the list of channels in the response?
     ///
     /// Defaults to `true` if not specified.
-    channels: Option<bool>,
+    pub channels: Option<bool>,
 
     /// Return the list of members in the response?
     ///
     /// Defaults to `false` if not specified.
-    members: Option<bool>
+    pub members: Option<bool>
 }
