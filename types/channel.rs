@@ -9,4 +9,9 @@ pub struct Channel {
     ///
     /// String of max length 100 chars
     pub name: String,
+
+    /// The guild ID
+    ///
+    /// 128 bit unsigned integer
+    pub guild_id: u128,
 }

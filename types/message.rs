@@ -14,4 +14,9 @@ pub struct Message {
 
     /// The channel this message is in
     pub channel_id: u128,
+
+    /// The author ID
+    ///
+    /// 128 bit unsigned integer
+    pub author_id: u128,
 }
