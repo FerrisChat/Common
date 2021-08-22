@@ -18,5 +18,5 @@ pub struct GetGuildUrlParams {
     /// Return the list of members in the response?
     ///
     /// Defaults to `false` if not specified.
-    pub members: Option<bool>
+    pub members: Option<bool>,
 }
