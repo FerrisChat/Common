@@ -1,9 +1,9 @@
-mod guilds;
-mod users;
 mod channels;
+mod guilds;
 mod messages;
+mod users;
 
-pub use guilds::*;
-pub use users::*;
 pub use channels::*;
+pub use guilds::*;
 pub use messages::*;
+pub use users::*;
