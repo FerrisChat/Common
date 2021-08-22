@@ -4,6 +4,6 @@ pub enum ModelType {
     Guild = 0,
     User = 1,
     Channel = 2,
-    Member = 3,
+    Message = 3,
     Unknown = !0,
 }
