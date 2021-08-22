@@ -1,3 +1,4 @@
+mod auth;
 mod channel;
 mod errors;
 mod guild;
@@ -6,6 +7,7 @@ mod message;
 mod model_type;
 mod user;
 
+pub use auth::AuthResponse;
 pub use channel::Channel;
 pub use errors::*;
 pub use guild::Guild;
