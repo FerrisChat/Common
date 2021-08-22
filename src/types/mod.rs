@@ -16,3 +16,4 @@ pub use member::Member;
 pub use message::Message;
 pub use model_type::ModelType;
 pub use user::User;
+pub use ws::WsConnectionInfo;
