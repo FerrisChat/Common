@@ -2,5 +2,5 @@
 #[derive(Serialize, Deserialize)]
 pub struct WsConnectionInfo {
     /// Where to establish a WebSocket connection to.
-    pub url: String
+    pub url: String,
 }
