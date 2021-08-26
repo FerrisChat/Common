@@ -1,7 +1,8 @@
 use bitflags::bitflags;
 
 bitflags! {
-    struct Intents: u64 {
+    #[derive(Default)]
+    pub struct Intents: u64 {
         /// Messages in a guild.
         const GUILD_MESSAGES = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
         /// Messages in DMs.
