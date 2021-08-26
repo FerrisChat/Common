@@ -7,7 +7,7 @@ bitflags! {
         const GUILD_MESSAGES = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
         /// Messages in DMs.
         const DM_MESSAGES =    0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010;
-        /// Shorthand for `GUILD_MESSAGES` | `DM_MESSAGES`.
+        /// Shorthand for `GUILD_MESSAGES | DM_MESSAGES`.
         const MESSAGES =       Self::GUILD_MESSAGES.bits | Self::DM_MESSAGES.bits;
 
         /// All guild events. This includes creation, deletion, and others.
