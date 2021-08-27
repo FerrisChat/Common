@@ -20,3 +20,9 @@ pub struct Message {
     /// 128 bit unsigned integer
     pub author_id: u128,
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct MessageHistory {
+    /// Vec of messages
+    pub messages: Vec<Message>,
+}
