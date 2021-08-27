@@ -22,8 +22,8 @@ pub struct Message {
 
     /// The last time this message was edited
     ///
-    /// None if it was never edited, otherwise a Ferris Epoch timestamp.
-    pub edited_at: Option<u128>,
+    /// None if it was never edited, otherwise a UTC datetime.
+    pub edited_at: Option<time::PrimitiveDateTime>,
 }
 
 #[derive(Serialize, Deserialize)]
