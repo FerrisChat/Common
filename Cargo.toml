@@ -22,4 +22,4 @@ include = [
 serde = "1.0"
 serde_derive = "1.0"
 bitflags = "1.3"
-chrono = "*"
+time = "*"
