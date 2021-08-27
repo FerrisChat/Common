@@ -21,7 +21,6 @@ pub struct Message {
     pub author_id: u128,
 }
 
-
 #[derive(Serialize, Deserialize)]
 pub struct MessageHistory {
     /// Vec of messages
