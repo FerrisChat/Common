@@ -11,3 +11,9 @@ pub struct MessageEditJson {
     /// Message content.
     pub content: Option<String>,
 }
+
+/// GET /api/v0/channels/{channel_id}/messages
+#[derive(Serialize, Deserialize)]
+pub struct GetMessageHistoryParams {
+    pub limit: Option<u64>,
+}
