@@ -13,6 +13,9 @@ pub struct User {
     /// String of max length 100 characters
     pub name: String,
 
+    /// The user's avatar url
+    pub avatar: Option<String>,
+
     /// The list of guilds the user is in
     ///
     /// Only sent to the user.
