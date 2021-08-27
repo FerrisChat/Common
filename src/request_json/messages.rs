@@ -7,5 +7,5 @@ pub struct MessageCreateJson {
 
 #[derive(Serialize, Deserialize)]
 pub struct GetMessageHistoryParams {
-    pub limit: Option<u64>,
+    pub limit: Option<i64>,
 }
