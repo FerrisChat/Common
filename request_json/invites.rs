@@ -2,8 +2,8 @@
 #[derive(Serialize, Deserialize)]
 pub struct InviteCreateJson {
     /// Max age of the invite (Invite will become invalid after this amount of seconds)
-    pub max_age: Option<u32>,
+    pub max_age: Option<i32>,
 
     /// Max uses of the invite (Invite will become invalid after this amount of uses)
-    pub max_uses: Option<u16>,
+    pub max_uses: Option<i16>,
 }
