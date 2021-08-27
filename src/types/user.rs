@@ -1,5 +1,5 @@
-use bitflags::bitflags;
 use crate::types::Guild;
+use bitflags::bitflags;
 
 #[derive(Serialize, Deserialize)]
 pub struct User {

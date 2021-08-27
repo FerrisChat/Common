@@ -23,14 +23,14 @@ pub struct UserCreateJson {
 pub struct UserUpdateJson {
     /// Users's preferred username.
     pub username: Option<String>,
-    
+
     /// User's email.
     ///
     /// Note: no serverside validation is done on this string.
     /// This allows for anonymous signup, but means account recovery is
     /// impossible if a invalid email is given
     pub email: Option<String>,
-    
+
     /// User's avatar, base64 encoded.
     pub avatar: Option<String>,
 
