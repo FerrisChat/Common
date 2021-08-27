@@ -4,3 +4,8 @@ pub struct MessageCreateJson {
     /// Message content.
     pub content: String,
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct GetMessageHistoryParams {
+    pub limit: Option<u64>,
+}
