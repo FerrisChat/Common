@@ -29,8 +29,11 @@ pub struct UserUpdateJson {
     /// Note: no serverside validation is done on this string.
     /// This allows for anonymous signup, but means account recovery is
     /// impossible if a invalid email is given
-    pub email: Option<String>,
+    pub email: Option<String>
     
+    /// User's avatar, base64 encoded.
+    pub avatar: Option<String>,
+
     /// User's Password.
     ///
     /// Password must be at least one Unicode codepoint.
