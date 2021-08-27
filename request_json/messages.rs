@@ -4,3 +4,10 @@ pub struct MessageCreateJson {
     /// Message content.
     pub content: String,
 }
+
+/// PATCH /api/v0/channels/{channel_id}/messages/{message_id}
+#[derive(Serialize, Deserialize)]
+pub struct MessageEditJson {
+    /// Message content.
+    pub content: Option<String>,
+}

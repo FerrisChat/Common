@@ -6,3 +6,11 @@ pub struct ChannelCreateJson {
     /// Must be between 1 and 100 Unicode codepoints.
     pub name: String,
 }
+
+// PATCH /api/v0/channels/{channel_id}
+pub struct ChannelUpdateJson {
+    /// Channel name.
+    ///
+    /// Must be between 1 and 100 Unicode codepoints.
+    pub name: Option<String>,
+}

@@ -20,3 +20,9 @@ pub struct GetGuildUrlParams {
     /// Defaults to `false` if not specified.
     pub members: Option<bool>,
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct GuildUpdateJson {
+    /// Guild name.
+    /// Must be between 1 and 100 Unicode codepoints.
+    pub name: Option<String>,
