@@ -20,9 +20,8 @@ pub struct Invite {
     pub uses: i32,
       
     /// The maximum amount of times the invite can be used before being invalidated
-    pub max_uses: i16,
+    pub max_uses: Option<i16>,
     
     /// The amount of seconds from the time the invite was created until it will expire
-    pub max_age: i64,
-    
+    pub max_age: Option<i64>,    
 }
