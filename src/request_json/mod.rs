@@ -1,11 +1,11 @@
 mod channels;
 mod guilds;
+mod invites;
 mod messages;
 mod users;
-mod invites;
 
 pub use channels::*;
 pub use guilds::*;
+pub use invites::*;
 pub use messages::*;
 pub use users::*;
-pub use invites::*;
