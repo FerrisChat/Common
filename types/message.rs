@@ -19,6 +19,11 @@ pub struct Message {
     ///
     /// 128 bit unsigned integer
     pub author_id: u128,
+
+    /// The last time this message was edited
+    ///
+    /// None if it was never edited, otherwise a Ferris Epoch timestamp.
+    pub edited_at: Option<u128>,
 }
 
 #[derive(Serialize, Deserialize)]
