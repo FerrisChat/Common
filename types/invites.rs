@@ -13,7 +13,7 @@ pub struct Invite {
     /// 128 bit unsigned integer
     pub guild_id: u128,
 
-    /// When the invite was created as a timezone-naive
+    /// When the invite was created as a timezone-naive datetime
     pub created_at: time::PrimitiveDateTime,
 
     /// How many times the invite was used
