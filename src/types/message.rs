@@ -10,7 +10,7 @@ pub struct Message {
     /// The content of the message
     ///
     /// String of max length 10,240 characters
-    pub content: String,
+    pub content: Option<String>,
 
     /// The channel this message is in
     pub channel_id: u128,
