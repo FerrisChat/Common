@@ -7,7 +7,7 @@ pub struct MessageCreateJson {
 
 /// PATCH /api/v0/channels/{channel_id}/messages/{message_id}
 #[derive(Serialize, Deserialize)]
-pub struct MessageEditJson {
+pub struct MessageUpdateJson {
     /// Message content.
     pub content: Option<String>,
 }

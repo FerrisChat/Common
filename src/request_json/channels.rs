@@ -8,6 +8,7 @@ pub struct ChannelCreateJson {
 }
 
 // PATCH /api/v0/channels/{channel_id}
+#[derive(Serialize, Deserialize)]
 pub struct ChannelUpdateJson {
     /// Channel name.
     ///
