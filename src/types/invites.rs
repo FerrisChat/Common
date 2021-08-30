@@ -14,7 +14,7 @@ pub struct Invite {
     pub guild_id: u128,
 
     /// When the invite was created as a timezone-naive datetime
-    pub created_at: u64,
+    pub created_at: i64,
 
     /// How many times the invite was used
     pub uses: i32,
