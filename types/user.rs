@@ -28,7 +28,7 @@ pub struct User {
 
     /// The user's discriminator
     ///
-    /// 16 bit signed integer (will be 3 digits)
+    /// 16 bit signed integer (will be 4 digits)
     pub discriminator: i16,
 }
 
