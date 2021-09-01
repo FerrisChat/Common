@@ -17,5 +17,5 @@ pub use invites::Invite;
 pub use member::Member;
 pub use message::*;
 pub use model_type::ModelType;
-pub use user::User;
+pub use user::*;
 pub use ws::WsConnectionInfo;
