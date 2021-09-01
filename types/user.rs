@@ -25,6 +25,11 @@ pub struct User {
     ///
     /// Bitmask of user info
     pub flags: i64,
+
+    /// The user's discriminator
+    ///
+    /// 16 bit signed integer (will be 3 digits)
+    pub discriminator: i16,
 }
 
 bitflags! {
