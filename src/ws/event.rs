@@ -1,4 +1,4 @@
-use crate::types::{Message, Channel, Member, User};
+use crate::types::{Channel, Member, Message, User};
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
@@ -21,24 +21,47 @@ pub enum WsOutboundEvent {
     /// Fired when a new message is created.
     ///
     /// `message` is the message that was created.
-    MessageCreate { message: Message },
+    MessageCreate {
+        message: Message,
+    },
     /// Fired when a message is updated.
     ///
     /// `old` is the message before the edit.
     /// `new` is the message after the edit.
-    MessageUpdate { old: Message, new: Message },
+    MessageUpdate {
+        old: Message,
+        new: Message,
+    },
     /// Fired when a message is deleted.
     ///
     /// `message` is the message that was deleted.
-    MessageDelete { message: Message },
+    MessageDelete {
+        message: Message,
+    },
 
-    ChannelCreate { channel: Channel },
-    ChannelUpdate { old: Channel, new: Channel },
-    ChannelDelete { channel: Channel },
+    ChannelCreate {
+        channel: Channel,
+    },
+    ChannelUpdate {
+        old: Channel,
+        new: Channel,
+    },
+    ChannelDelete {
+        channel: Channel,
+    },
 
-    MemberCreate { member: Member },
-    MemberUpdate { old: Member, new: Member },
-    MemberDelete { member: Member },
+    MemberCreate {
+        member: Member,
+    },
+    MemberUpdate {
+        old: Member,
+        new: Member,
+    },
+    MemberDelete {
+        member: Member,
+    },
 
-    UserCreate { user: User }
+    UserCreate {
+        user: User,
+    },
 }
