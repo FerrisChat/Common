@@ -18,6 +18,13 @@ pub enum WsInboundEvent {
 #[serde(tag = "c", content = "d")]
 /// Server -> client WebSocket events.
 pub enum WsOutboundEvent {
+    /// Fired when a `Resume` or `Identify` is accepted as valid.
+    ///
+    /// `user` is the now-authorized user.
+    IdentifyAccepted {
+        user: User,
+    },
+
     /// Fired when a new message is created.
     ///
     /// `message` is the message that was created.
