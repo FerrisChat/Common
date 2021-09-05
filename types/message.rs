@@ -1,4 +1,5 @@
 use crate::types::Channel;
+use crate::types::Embed;
 
 #[derive(Serialize, Deserialize)]
 pub struct Message {
@@ -24,6 +25,11 @@ pub struct Message {
     ///
     /// None if it was never edited, otherwise a UTC datetime.
     pub edited_at: Option<time::PrimitiveDateTime>,
+    
+    /// A list of embeds in the message.
+    ///
+    /// Maximum 10 embeds
+    pub embeds: Vec<Embed>,
 }
 
 #[derive(Serialize, Deserialize)]
