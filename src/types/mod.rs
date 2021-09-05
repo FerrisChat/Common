@@ -1,5 +1,6 @@
 mod auth;
 mod channel;
+mod embed;
 mod errors;
 mod guild;
 mod invites;
@@ -11,6 +12,7 @@ mod ws;
 
 pub use auth::AuthResponse;
 pub use channel::Channel;
+pub use embed::Embed;
 pub use errors::*;
 pub use guild::Guild;
 pub use invites::Invite;
