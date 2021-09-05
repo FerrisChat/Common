@@ -18,7 +18,7 @@ pub struct Role {
     /// The role color
     ///
     /// Integer between 0 and 16777215 (0xFFFFFF)
-    pub color: u32,
+    pub color: Option<u32>,
 
     /// The role position
     ///
