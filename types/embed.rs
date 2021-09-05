@@ -9,14 +9,14 @@ struct EmbedFooter {
     pub text: String,
     pub icon_url: Option<String>,
 }
-        
+
 #[derive(Serialize, Deserialize)]
 struct EmbedField {
     pub name: String,
     pub value: String,
     pub inline: bool,
 }
-        
+
 #[derive(Serialize, Deserialize)]
 pub struct Embed {
     pub r#type: String,
