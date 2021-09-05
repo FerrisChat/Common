@@ -5,5 +5,6 @@ pub enum ModelType {
     User = 1,
     Channel = 2,
     Message = 3,
+    Role = 4,
     Unknown = !0,
 }
