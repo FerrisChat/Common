@@ -1,17 +1,17 @@
 #[derive(Serialize, Deserialize)]
-struct EmbedAuthor {
+pub struct EmbedAuthor {
     pub name: String,
     pub icon_url: Option<String>,
 }
 
 #[derive(Serialize, Deserialize)]
-struct EmbedFooter {
+pub struct EmbedFooter {
     pub text: String,
     pub icon_url: Option<String>,
 }
 
 #[derive(Serialize, Deserialize)]
-struct EmbedField {
+pub struct EmbedField {
     pub name: String,
     pub value: String,
     pub inline: bool,
