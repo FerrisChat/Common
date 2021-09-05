@@ -19,7 +19,7 @@ struct EmbedField {
         
 #[derive(Serialize, Deserialize)]
 pub struct Embed {
-    pub type: String,
+    pub r#type: String,
     pub title: Option<String>,
     pub description: Option<String>,
     pub url: Option<String>,
