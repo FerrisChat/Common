@@ -1,4 +1,5 @@
 use crate::types::{Channel, Member, Message, User};
+use std::boxed::Box;
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
@@ -56,8 +57,8 @@ pub enum WsOutboundEvent {
         member: Member,
     },
     MemberUpdate {
-        old: Member,
-        new: Member,
+        old: Box<Member>,
+        new: Box<Member>,
     },
     MemberDelete {
         member: Member,
