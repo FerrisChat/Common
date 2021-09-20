@@ -1,7 +1,7 @@
 use crate::types::Channel;
 use crate::types::Member;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Guild {
     /// Guild ID
     ///

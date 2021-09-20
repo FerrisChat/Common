@@ -1,21 +1,21 @@
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct InternalServerErrorJson {
     pub reason: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct BadRequestJson {
     pub reason: String,
     pub location: Option<BadRequestJsonLocation>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct BadRequestJsonLocation {
     pub line: u32,
     pub character: u32,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 /// JSON returned along with a HTTP 429 Too Many Requests
 pub struct TooManyRequestsJson {
     /// This many requests are allowed in `duration` seconds.
@@ -31,7 +31,7 @@ pub struct TooManyRequestsJson {
     pub retry_after: u128,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 // JSON returned along with HTTP 404 Not Found.
 pub struct NotFoundJson {
     pub message: String,

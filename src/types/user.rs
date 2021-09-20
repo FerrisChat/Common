@@ -1,7 +1,7 @@
 use crate::types::Guild;
 use bitflags::bitflags;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct User {
     /// The user's ID
     ///
