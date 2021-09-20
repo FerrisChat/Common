@@ -1,5 +1,5 @@
 /// JSON accepted for POST /api/v0/guilds/{guild_id}/roles
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct RoleCreateJson {
     /// Role name
     ///
@@ -23,7 +23,7 @@ pub struct RoleCreateJson {
 }
 
 /// JSON accepted for PATCH /api/v0/guilds/{guild_id}/roles/{role_id}
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct RoleUpdateJson {
     /// Role name
     ///
