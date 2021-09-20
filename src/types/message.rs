@@ -1,4 +1,3 @@
-use crate::types::Channel;
 use crate::types::Embed;
 
 #[derive(Serialize, Deserialize)]
