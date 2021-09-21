@@ -4,10 +4,7 @@ use std::boxed::Box;
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
 pub enum WsInboundEvent {
-    Identify {
-        token: String,
-        intents: u64,
-    },
+    Identify { token: String, intents: u64 },
 }
 
 #[derive(Serialize, Deserialize)]
