@@ -1,4 +1,5 @@
 use crate::types::{Channel, Member, Message, User};
+use std::boxed::Box;
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
@@ -7,18 +8,13 @@ pub enum WsInboundEvent {
         token: String,
         intents: u64,
     },
-    Resume {
-        token: String,
-        session_id: String,
-        sequence: u64,
-    },
 }
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
 /// Server -> client WebSocket events.
 pub enum WsOutboundEvent {
-    /// Fired when a `Resume` or `Identify` is accepted as valid.
+    /// Fired when an `Identify` is accepted as valid.
     ///
     /// `user` is the now-authorized user.
     IdentifyAccepted {
@@ -61,8 +57,8 @@ pub enum WsOutboundEvent {
         member: Member,
     },
     MemberUpdate {
-        old: Member,
-        new: Member,
+        old: Box<Member>,
+        new: Box<Member>,
     },
     MemberDelete {
         member: Member,

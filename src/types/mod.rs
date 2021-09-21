@@ -7,6 +7,7 @@ mod invites;
 mod member;
 mod message;
 mod model_type;
+mod role;
 mod user;
 mod ws;
 
@@ -19,5 +20,6 @@ pub use invites::Invite;
 pub use member::Member;
 pub use message::*;
 pub use model_type::ModelType;
+pub use role::Role;
 pub use user::*;
 pub use ws::WsConnectionInfo;

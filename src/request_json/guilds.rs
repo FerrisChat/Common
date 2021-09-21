@@ -1,5 +1,5 @@
 /// JSON accepted for POST /api/v0/guilds/ (create guild)
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct GuildCreateJson {
     /// Guild name.
     ///
@@ -8,7 +8,7 @@ pub struct GuildCreateJson {
 }
 
 /// URL parameters accepted for GET /api/v0/guilds/{guild_id} (get guild)
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct GetGuildUrlParams {
     /// Return the list of channels in the response?
     ///
@@ -21,7 +21,7 @@ pub struct GetGuildUrlParams {
     pub members: Option<bool>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct GuildUpdateJson {
     /// Guild name.
     /// Must be between 1 and 100 Unicode codepoints.
