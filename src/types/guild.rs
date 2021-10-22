@@ -28,6 +28,11 @@ pub struct Guild {
     ///
     /// Not sent at times to reduce bandwidth usage
     pub members: Option<Vec<Member>>,
+
+    /// Guild flags
+    ///
+    /// Bitmask of guild info
+    pub flags: i64,
 }
 
 bitflags! {
