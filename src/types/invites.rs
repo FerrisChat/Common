@@ -1,4 +1,4 @@
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Invite {
     /// The invite's unique code (string)
     pub code: String,
