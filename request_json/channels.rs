@@ -1,5 +1,5 @@
 /// JSON accepted for POST /api/v0/guilds/{guild_id}/channels/ (create channel)
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ChannelCreateJson {
     /// Channel name.
     ///
@@ -8,7 +8,7 @@ pub struct ChannelCreateJson {
 }
 
 // PATCH /api/v0/channels/{channel_id}
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct ChannelUpdateJson {
     /// Channel name.
     ///

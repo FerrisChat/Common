@@ -1,7 +1,7 @@
 use crate::types::Guild;
 use bitflags::bitflags;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct User {
     /// The user's ID
     ///
@@ -33,7 +33,7 @@ pub struct User {
 }
 
 bitflags! {
-    #[derive(Default)]
+    #[derive(Default, Serialize, Deserialize)]
     pub struct UserFlags: i64 {
         /// This account is a bot.
         const BOT_ACCOUNT =     0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
