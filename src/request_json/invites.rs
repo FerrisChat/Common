@@ -1,5 +1,5 @@
 /// JSON accepted for POST /api/v0/guilds/{guild_id}/invites/ (create invite)
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct InviteCreateJson {
     /// Max age of the invite (Invite will become invalid after this amount of seconds)
     pub max_age: Option<i64>,
