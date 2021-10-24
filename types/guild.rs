@@ -44,3 +44,5 @@ bitflags! {
         const VERIFIED_SCAM  = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010;
     }
 }
+
+serde_for_bitflags!(GuildFlags);
