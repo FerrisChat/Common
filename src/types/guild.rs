@@ -32,7 +32,7 @@ pub struct Guild {
     /// Guild flags
     ///
     /// Bitmask of guild info
-    pub flags: i64,
+    pub flags: GuildFlags,
 }
 
 bitflags! {
