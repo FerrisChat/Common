@@ -24,7 +24,7 @@ pub struct User {
     /// User flags
     ///
     /// Bitmask of user info
-    pub flags: i64,
+    pub flags: UserFlags,
 
     /// The user's discriminator
     ///
