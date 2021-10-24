@@ -1,4 +1,4 @@
-use crate::types::{Channel, Guild, Member, Message, User};
+use crate::types::{Channel, Guild, Invite, Member, Message, User};
 use std::boxed::Box;
 
 #[derive(Serialize, Deserialize)]
@@ -70,5 +70,12 @@ pub enum WsOutboundEvent {
     },
     MemberDelete {
         member: Member,
+    },
+
+    InviteCreate {
+        invite: Invite,
+    },
+    InviteDelete {
+        invite: Invite,
     },
 }
