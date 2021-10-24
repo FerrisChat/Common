@@ -49,16 +49,16 @@ pub enum WsOutboundEvent {
     ChannelDelete {
         channel: Channel,
     },
-    
+
     GuildCreate {
-        guild: Guild
+        guild: Guild,
     },
     GuildUpdate {
         old: Guild,
-        new: Guild
+        new: Guild,
     },
     GuildDelete {
-        guild: Guild
+        guild: Guild,
     },
 
     MemberCreate {
@@ -71,5 +71,4 @@ pub enum WsOutboundEvent {
     MemberDelete {
         member: Member,
     },
-
 }
