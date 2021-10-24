@@ -15,7 +15,7 @@ pub use auth::AuthResponse;
 pub use channel::Channel;
 pub use embed::Embed;
 pub use errors::*;
-pub use guild::Guild;
+pub use guild::*;
 pub use invites::Invite;
 pub use member::Member;
 pub use message::*;
