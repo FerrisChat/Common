@@ -24,7 +24,7 @@ pub struct User {
     /// User flags
     ///
     /// Bitmask of user info
-    pub flags: i64,
+    pub flags: UserFlags,
 
     /// The user's discriminator
     ///
@@ -33,7 +33,7 @@ pub struct User {
 }
 
 bitflags! {
-    #[derive(Default, Serialize, Deserialize)]
+    #[derive(Default)]
     pub struct UserFlags: i64 {
         /// This account is a bot.
         const BOT_ACCOUNT =     0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
@@ -63,3 +63,5 @@ bitflags! {
         const MAINTAINER =      0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_1000_0000_0000;
     }
 }
+
+serde_for_bitflags!(UserFlags);

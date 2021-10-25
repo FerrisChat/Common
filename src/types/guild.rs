@@ -32,7 +32,7 @@ pub struct Guild {
     /// Guild flags
     ///
     /// Bitmask of guild info
-    pub flags: i64,
+    pub flags: GuildFlags,
 }
 
 bitflags! {
@@ -44,3 +44,5 @@ bitflags! {
         const VERIFIED_SCAM  = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010;
     }
 }
+
+serde_for_bitflags!(GuildFlags);
