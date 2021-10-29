@@ -2,7 +2,7 @@
 name = "ferrischat_common"
 version = "0.1.7"
 authors = ["FerrisChat Team <crates@ferris.chat>"]
-edition = "2018"
+edition = "2021"
 license = "MIT"
 description = "Common utilities and types for FerrisChat"
 homepage = "https://ferris.chat"
