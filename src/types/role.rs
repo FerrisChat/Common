@@ -1,3 +1,6 @@
+use crate::perms::Permissions;
+use crate::types::Guild;
+
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Role {
     /// The role ID
@@ -18,15 +21,15 @@ pub struct Role {
     /// The role color
     ///
     /// Integer between 0 and 16777215 (0xFFFFFF)
-    pub color: Option<u32>,
+    pub color: Option<i32>,
 
     /// The role position
     ///
     /// Integer between 0 and 1023
-    pub position: u16,
+    pub position: i16,
 
     /// The role permissions
     ///
-    /// Integer between 0 and 9,223,372,036,854,775,807
-    pub permissions: u64,
+    /// Bitflags representing permission bits
+    pub permissions: Permissions,
 }

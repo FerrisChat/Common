@@ -1,5 +1,5 @@
-use crate::types::Channel;
 use crate::types::Member;
+use crate::types::{Channel, Role};
 use bitflags::bitflags;
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -28,6 +28,11 @@ pub struct Guild {
     ///
     /// Not sent at times to reduce bandwidth usage
     pub members: Option<Vec<Member>>,
+
+    /// Role list
+    ///
+    /// Not sent at times to reduce bandwidth usage
+    pub roles: Option<Vec<Role>>,
 
     /// Guild flags
     ///
