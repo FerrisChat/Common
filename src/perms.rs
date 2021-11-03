@@ -15,3 +15,5 @@ bitflags! {
         const REMOVE_MEMBERS =      0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001_0000;
     }
 }
+
+serde_for_bitflags!(Permissions);
