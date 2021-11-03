@@ -1,3 +1,5 @@
+use crate::perms::Permissions;
+
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Role {
     /// The role ID
@@ -27,6 +29,6 @@ pub struct Role {
 
     /// The role permissions
     ///
-    /// Integer between 0 and 9,223,372,036,854,775,807
-    pub permissions: u64,
+    /// Bitflags representing permission bits
+    pub permissions: Permissions,
 }
