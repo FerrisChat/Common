@@ -1,5 +1,5 @@
-use crate::types::{Channel, Role};
 use crate::types::Member;
+use crate::types::{Channel, Role};
 use bitflags::bitflags;
 
 #[derive(Serialize, Deserialize, Clone)]
