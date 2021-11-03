@@ -21,18 +21,15 @@ pub struct Role {
     /// The role color
     ///
     /// Integer between 0 and 16777215 (0xFFFFFF)
-    pub color: Option<u32>,
+    pub color: Option<i32>,
 
     /// The role position
     ///
     /// Integer between 0 and 1023
-    pub position: u16,
+    pub position: i16,
 
     /// The role permissions
     ///
     /// Bitflags representing permission bits
     pub permissions: Permissions,
-
-    pub parent_guild: Option<Guild>,
-    pub parent_guild_id: Option<u128>,
 }
