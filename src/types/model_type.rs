@@ -6,5 +6,8 @@ pub enum ModelType {
     Channel = 2,
     Message = 3,
     Role = 4,
+    /// You should never get a snowflake with this model type,
+    /// as these types are only used for cases where the database needs a ID but no other option applies.
+    InternalUse = 5,
     Unknown = !0,
 }
