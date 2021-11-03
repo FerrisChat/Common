@@ -1,4 +1,5 @@
 use crate::perms::Permissions;
+use crate::types::Guild;
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Role {
@@ -31,4 +32,7 @@ pub struct Role {
     ///
     /// Bitflags representing permission bits
     pub permissions: Permissions,
+
+    pub parent_guild: Option<Guild>,
+    pub parent_guild_id: Option<u128>,
 }
