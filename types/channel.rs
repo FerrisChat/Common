@@ -24,7 +24,7 @@ impl Serialize for Channel {
         where
             S: Serializer,
     {
-        let mut self_ser = serializer.serialize_struct("Guild", 9)?;
+        let mut self_ser = serializer.serialize_struct("Channel", 5)?;
 
         self_ser.serialize_field("id", &self.id)?;
         self_ser.serialize_field("id_string", &self.id.to_string())?;
