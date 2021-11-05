@@ -1,8 +1,9 @@
 use crate::types::Member;
 use crate::types::{Channel, Role};
 use bitflags::bitflags;
+use serde::ser::SerializeStruct;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Deserialize, Clone)]
 pub struct Guild {
     /// Guild ID
     ///
@@ -39,6 +40,29 @@ pub struct Guild {
     /// Bitmask of guild info
     pub flags: GuildFlags,
 }
+
+impl Serialize for Guild {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut self_ser = serializer.serialize_struct("Guild", 9)?;
+
+        self_ser.serialize_field("id", &self.id)?;
+        self_ser.serialize_field("id_string", &self.id.to_string())?;
+
+        self_ser.serialize_field("owner_id", &self.owner_id)?;
+        self_ser.serialize_field("owner_id_string", &self.owner_id.to_string())?;
+
+        self_ser.serialize_field("name", &self.name)?;
+        self_ser.serialize_field("channels", &self.channels)?;
+        self_ser.serialize_field("members", &self.members)?;
+        self_ser.serialize_field("roles", &self.roles)?;
+        self_ser.serialize_field("flags", &self.flags)?;
+        self_ser.end()
+    }
+}
+
 
 bitflags! {
     #[derive(Default)]
