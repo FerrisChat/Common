@@ -1,4 +1,7 @@
-#[derive(Serialize, Deserialize, Clone)]
+use serde::{Serialize, Serializer};
+use serde::ser::SerializeStruct;
+
+#[derive(Deserialize, Clone)]
 pub struct Channel {
     /// The channel ID
     ///
@@ -14,4 +17,22 @@ pub struct Channel {
     ///
     /// 128 bit unsigned integer
     pub guild_id: u128,
+}
+
+impl Serialize for Channel {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut self_ser = serializer.serialize_struct("Guild", 9)?;
+
+        self_ser.serialize_field("id", &self.id)?;
+        self_ser.serialize_field("id_string", &self.id.to_string())?;
+
+        self_ser.serialize_field("guild_id", &self.guild_id)?;
+        self_ser.serialize_field("guild_id_string", &self.guild_id.to_string())?;
+
+        self_ser.serialize_field("name", &self.name)?;
+        self_ser.end()
+    }
 }
