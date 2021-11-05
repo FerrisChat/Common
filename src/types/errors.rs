@@ -1,3 +1,6 @@
+use serde::{Serialize, Serializer};
+use serde::ser::SerializeStruct;
+
 #[derive(Serialize, Deserialize, Clone)]
 pub struct InternalServerErrorJson {
     pub reason: String,
@@ -15,7 +18,7 @@ pub struct BadRequestJsonLocation {
     pub character: u32,
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Deserialize, Clone)]
 /// JSON returned along with a HTTP 429 Too Many Requests
 pub struct TooManyRequestsJson {
     /// This many requests are allowed in `duration` seconds.
@@ -30,6 +33,23 @@ pub struct TooManyRequestsJson {
     /// as a lifetime limit has been hit for this IP address.
     pub retry_after: u128,
 }
+
+impl Serialize for TooManyRequestsJson {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut self_ser = serializer.serialize_struct("TooManyRequestsJson", 4)?;
+
+        self_ser.serialize_field("count", &self.count)?;
+        self_ser.serialize_field("duration", &self.duration)?;
+
+        self_ser.serialize_field("retry_after", &self.retry_after)?;
+        self_ser.serialize_field("retry_after_string", &self.retry_after.to_string())?;
+        self_ser.end()
+    }
+}
+
 
 #[derive(Serialize, Deserialize, Clone)]
 // JSON returned along with HTTP 404 Not Found.
