@@ -35,8 +35,8 @@ pub struct User {
 
 impl Serialize for User {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("User", 7)?;
 
@@ -52,7 +52,6 @@ impl Serialize for User {
         self_ser.end()
     }
 }
-
 
 bitflags! {
     #[derive(Default)]

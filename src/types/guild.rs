@@ -43,8 +43,8 @@ pub struct Guild {
 
 impl Serialize for Guild {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("Guild", 9)?;
 
@@ -62,7 +62,6 @@ impl Serialize for Guild {
         self_ser.end()
     }
 }
-
 
 bitflags! {
     #[derive(Default)]

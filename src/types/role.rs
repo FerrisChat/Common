@@ -1,7 +1,7 @@
-use serde::{Serialize, Serializer};
-use serde::ser::SerializeStruct;
 use crate::perms::Permissions;
 use crate::types::Guild;
+use serde::ser::SerializeStruct;
+use serde::{Serialize, Serializer};
 
 #[derive(Deserialize, Clone)]
 pub struct Role {
@@ -38,8 +38,8 @@ pub struct Role {
 
 impl Serialize for Role {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("Role", 8)?;
 

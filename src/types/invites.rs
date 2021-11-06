@@ -31,8 +31,8 @@ pub struct Invite {
 
 impl Serialize for Invite {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("Invite", 9)?;
 
@@ -52,4 +52,3 @@ impl Serialize for Invite {
         self_ser.end()
     }
 }
-
