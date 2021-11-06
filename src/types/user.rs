@@ -1,7 +1,8 @@
 use crate::types::Guild;
 use bitflags::bitflags;
+use serde::ser::SerializeStruct;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Deserialize, Clone)]
 pub struct User {
     /// The user's ID
     ///
@@ -31,6 +32,27 @@ pub struct User {
     /// 16 bit signed integer (will be 4 digits)
     pub discriminator: i16,
 }
+
+impl Serialize for User {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut self_ser = serializer.serialize_struct("User", 7)?;
+
+        self_ser.serialize_field("id", &self.id)?;
+        self_ser.serialize_field("id_string", &self.id.to_string())?;
+
+        self_ser.serialize_field("name", &self.name)?;
+        self_ser.serialize_field("avatar", &self.avatar)?;
+        self_ser.serialize_field("guilds", &self.guilds)?;
+        self_ser.serialize_field("flags", &self.flags)?;
+        self_ser.serialize_field("discriminator", &self.discriminator)?;
+
+        self_ser.end()
+    }
+}
+
 
 bitflags! {
     #[derive(Default)]
