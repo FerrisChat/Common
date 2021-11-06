@@ -1,6 +1,8 @@
+use serde::{Serialize, Serializer};
+use serde::ser::SerializeStruct;
 use crate::types::Embed;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Deserialize, Clone)]
 pub struct Message {
     /// The ID of the message
     ///
@@ -29,6 +31,31 @@ pub struct Message {
     ///
     /// Maximum 10 embeds
     pub embeds: Vec<Embed>,
+}
+
+impl Serialize for Message {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: Serializer,
+    {
+        let mut self_ser = serializer.serialize_struct("Member", 6)?;
+
+        self_ser.serialize_field("id", &self.id)?;
+        self_ser.serialize_field("id_string", &self.id.to_string())?;
+
+        self_ser.serialize_field("content", &self.content)?;
+
+        self_ser.serialize_field("channel_id", &self.channel_id)?;
+        self_ser.serialize_field("channel_id_string", &self.channel_id.to_string())?;
+
+        self_ser.serialize_field("author_id", &self.author_id)?;
+        self_ser.serialize_field("author_id_string", &self.author_id.to_string())?;
+
+        self_ser.serialize_field("edited_at", &self.edited_at)?;
+        self_ser.serialize_field("embeds", &self.embeds)?;
+
+        self_ser.end()
+    }
 }
 
 #[derive(Serialize, Deserialize)]
