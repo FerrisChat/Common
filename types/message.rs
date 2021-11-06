@@ -38,7 +38,7 @@ impl Serialize for Message {
         where
             S: Serializer,
     {
-        let mut self_ser = serializer.serialize_struct("Member", 6)?;
+        let mut self_ser = serializer.serialize_struct("Message", 9)?;
 
         self_ser.serialize_field("id", &self.id)?;
         self_ser.serialize_field("id_string", &self.id.to_string())?;
