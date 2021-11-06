@@ -1,5 +1,5 @@
-use serde::{Serialize, Serializer};
 use serde::ser::SerializeStruct;
+use serde::{Serialize, Serializer};
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct InternalServerErrorJson {
@@ -36,8 +36,8 @@ pub struct TooManyRequestsJson {
 
 impl Serialize for TooManyRequestsJson {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("TooManyRequestsJson", 4)?;
 
@@ -49,7 +49,6 @@ impl Serialize for TooManyRequestsJson {
         self_ser.end()
     }
 }
-
 
 #[derive(Serialize, Deserialize, Clone)]
 // JSON returned along with HTTP 404 Not Found.

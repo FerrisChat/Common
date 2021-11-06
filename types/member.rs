@@ -1,6 +1,6 @@
-use serde::{Serialize, Serializer};
-use serde::ser::SerializeStruct;
 use crate::types::{Guild, User};
+use serde::ser::SerializeStruct;
+use serde::{Serialize, Serializer};
 
 #[derive(Deserialize, Clone)]
 pub struct Member {
@@ -13,8 +13,8 @@ pub struct Member {
 
 impl Serialize for Member {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("Member", 6)?;
 
@@ -29,4 +29,3 @@ impl Serialize for Member {
         self_ser.end()
     }
 }
-

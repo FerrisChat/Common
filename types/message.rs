@@ -1,6 +1,6 @@
-use serde::{Serialize, Serializer};
-use serde::ser::SerializeStruct;
 use crate::types::Embed;
+use serde::ser::SerializeStruct;
+use serde::{Serialize, Serializer};
 
 #[derive(Deserialize, Clone)]
 pub struct Message {
@@ -35,8 +35,8 @@ pub struct Message {
 
 impl Serialize for Message {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: Serializer,
+    where
+        S: Serializer,
     {
         let mut self_ser = serializer.serialize_struct("Message", 9)?;
 
