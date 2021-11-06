@@ -3,7 +3,7 @@ use serde::ser::SerializeStruct;
 use crate::perms::Permissions;
 use crate::types::Guild;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Deserialize, Clone)]
 pub struct Role {
     /// The role ID
     ///
