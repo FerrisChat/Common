@@ -1,4 +1,5 @@
 use crate::types::Embed;
+use crate::types::User;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
@@ -21,6 +22,9 @@ pub struct Message {
     ///
     /// 128 bit unsigned integer
     pub author_id: u128,
+
+    /// The resolved data of the author of this message
+    pub author: Option<User>,
 
     /// The last time this message was edited
     ///
@@ -50,6 +54,7 @@ impl Serialize for Message {
 
         self_ser.serialize_field("author_id", &self.author_id)?;
         self_ser.serialize_field("author_id_string", &self.author_id.to_string())?;
+        self_ser.serialize_field("author", &self.author)?;
 
         self_ser.serialize_field("edited_at", &self.edited_at)?;
         self_ser.serialize_field("embeds", &self.embeds)?;
