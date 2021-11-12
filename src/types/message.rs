@@ -54,7 +54,8 @@ impl Serialize for Message {
 
         self_ser.serialize_field("author_id", &self.author_id)?;
         self_ser.serialize_field("author_id_string", &self.author_id.to_string())?;
-
+        self_ser.serialize_field("author", &self.author)?;
+        
         self_ser.serialize_field("edited_at", &self.edited_at)?;
         self_ser.serialize_field("embeds", &self.embeds)?;
 
