@@ -16,4 +16,5 @@ pub struct MessageUpdateJson {
 #[derive(Serialize, Deserialize, Clone)]
 pub struct GetMessageHistoryParams {
     pub limit: Option<i64>,
+    pub oldest_first: Option<bool>,
 }
