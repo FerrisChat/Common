@@ -3,6 +3,7 @@
 pub struct MessageCreateJson {
     /// Message content.
     pub content: String,
+    pub nonce: Option<String>,
 }
 
 /// PATCH /api/v0/channels/{channel_id}/messages/{message_id}
