@@ -63,7 +63,7 @@ impl Serialize for Message {
 
         self_ser.serialize_field("edited_at", &self.edited_at)?;
         self_ser.serialize_field("embeds", &self.embeds)?;
-        
+
         self_ser.serialize_field("nonce", &self.nonce)?;
 
         self_ser.end()
