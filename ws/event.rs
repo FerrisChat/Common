@@ -5,6 +5,10 @@ use std::boxed::Box;
 #[serde(tag = "c", content = "d")]
 pub enum WsInboundEvent {
     Identify { token: String, intents: u64 },
+    
+    // ping + pong payloads
+    Ping,
+    Pong,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -17,6 +21,10 @@ pub enum WsOutboundEvent {
     IdentifyAccepted {
         user: User,
     },
+
+    // ping + pong payloads
+    Ping,
+    Pong,
 
     /// Fired when a new message is created.
     ///
