@@ -35,6 +35,11 @@ pub struct Message {
     ///
     /// Maximum 10 embeds
     pub embeds: Vec<Embed>,
+
+    /// The nonce of the message
+    ///
+    /// Is not stored on db so it can be None.
+    pub nonce: Option<String>,
 }
 
 impl Serialize for Message {
@@ -58,6 +63,8 @@ impl Serialize for Message {
 
         self_ser.serialize_field("edited_at", &self.edited_at)?;
         self_ser.serialize_field("embeds", &self.embeds)?;
+        
+        self_ser.serialize_field("nonce", &self.nonce)?;
 
         self_ser.end()
     }
