@@ -18,4 +18,5 @@ pub struct MessageUpdateJson {
 pub struct GetMessageHistoryParams {
     pub limit: Option<i64>,
     pub oldest_first: Option<bool>,
+    pub offset: Option<i64>,
 }
