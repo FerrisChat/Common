@@ -5,7 +5,7 @@ use std::boxed::Box;
 #[serde(tag = "c", content = "d")]
 pub enum WsInboundEvent {
     Identify { token: String, intents: u64 },
-    
+
     // ping + pong payloads
     Ping,
     Pong,
