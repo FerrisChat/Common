@@ -9,6 +9,5 @@ pub enum ModelType {
     /// You should never get a snowflake with this model type,
     /// as these types are only used for cases where the database needs a ID but no other option applies.
     InternalUse = 5,
-    Bot = 6,
     Unknown = !0,
 }
