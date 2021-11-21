@@ -1,3 +1,4 @@
+mod bots;
 mod channels;
 mod guilds;
 mod invites;
@@ -5,6 +6,7 @@ mod messages;
 mod roles;
 mod users;
 
+pub use bots::*;
 pub use channels::*;
 pub use guilds::*;
 pub use invites::*;
