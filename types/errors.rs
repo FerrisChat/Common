@@ -62,4 +62,3 @@ pub struct NotFoundJson {
 pub struct Json {
     pub message: String,
 }
-
