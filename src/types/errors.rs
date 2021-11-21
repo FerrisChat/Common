@@ -4,7 +4,7 @@ use serde::{Serialize, Serializer};
 #[derive(Serialize, Deserialize, Clone)]
 pub struct InternalServerErrorJson {
     pub reason: String,
-    pub is_bug: Option<bool>,
+    pub is_bug: bool,
     pub link: Option<String>,
 }
 
