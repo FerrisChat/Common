@@ -57,3 +57,9 @@ impl Serialize for TooManyRequestsJson {
 pub struct NotFoundJson {
     pub message: String,
 }
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Json {
+    pub message: String,
+}
+
