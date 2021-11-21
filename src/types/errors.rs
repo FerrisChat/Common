@@ -4,6 +4,8 @@ use serde::{Serialize, Serializer};
 #[derive(Serialize, Deserialize, Clone)]
 pub struct InternalServerErrorJson {
     pub reason: String,
+    pub is_bug: bool,
+    pub link: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -53,5 +55,10 @@ impl Serialize for TooManyRequestsJson {
 #[derive(Serialize, Deserialize, Clone)]
 // JSON returned along with HTTP 404 Not Found.
 pub struct NotFoundJson {
+    pub message: String,
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Json {
     pub message: String,
 }
