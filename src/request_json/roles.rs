@@ -1,6 +1,6 @@
 use crate::perms::Permissions;
 
-/// JSON accepted for POST /api/v0/guilds/{guild_id}/roles
+/// JSON accepted for POST /v0/guilds/{guild_id}/roles
 #[derive(Serialize, Deserialize, Clone)]
 pub struct RoleCreateJson {
     /// Role name
@@ -22,7 +22,7 @@ pub struct RoleCreateJson {
     pub permissions: Option<Permissions>,
 }
 
-/// JSON accepted for PATCH /api/v0/guilds/{guild_id}/roles/{role_id}
+/// JSON accepted for PATCH /v0/guilds/{guild_id}/roles/{role_id}
 #[derive(Serialize, Deserialize, Clone)]
 pub struct RoleUpdateJson {
     /// Role name
