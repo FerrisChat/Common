@@ -56,7 +56,7 @@ impl Serialize for User {
 #[derive(Deserialize, Clone)]
 struct BotsOwnedByUser {
     /// Bots owned by the user.
-    pub bots: Vec<User>
+    pub bots: Vec<User>,
 }
 
 bitflags! {
