@@ -53,6 +53,12 @@ impl Serialize for User {
     }
 }
 
+#[derive(Deserialize, Clone)]
+struct BotsOwnedByUser {
+    /// Bots owned by the user.
+    pub bots: Vec<User>
+}
+
 bitflags! {
     #[derive(Default)]
     pub struct UserFlags: i64 {
