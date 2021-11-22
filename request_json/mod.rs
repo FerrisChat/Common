@@ -5,6 +5,7 @@ mod invites;
 mod messages;
 mod roles;
 mod users;
+mod moderation;
 
 pub use bots::*;
 pub use channels::*;
