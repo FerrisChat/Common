@@ -1,4 +1,4 @@
-/// JSON accepted for POST /api/v0/users/ (create user)
+/// JSON accepted for POST /v0/users/ (create user)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct UserCreateJson {
     /// User's preferred username.
@@ -18,7 +18,7 @@ pub struct UserCreateJson {
     pub password: String,
 }
 
-/// JSON accepted for PATCH /api/v0/users/{user_id}
+/// JSON accepted for PATCH /v0/users/{user_id}
 #[derive(Serialize, Deserialize, Clone)]
 pub struct UserUpdateJson {
     /// Users's preferred username.

@@ -1,4 +1,4 @@
-/// JSON accepted for POST /api/v0/guilds/ (create guild)
+/// JSON accepted for POST /v0/guilds/ (create guild)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct GuildCreateJson {
     /// Guild name.
@@ -7,7 +7,7 @@ pub struct GuildCreateJson {
     pub name: String,
 }
 
-/// URL parameters accepted for GET /api/v0/guilds/{guild_id} (get guild)
+/// URL parameters accepted for GET /v0/guilds/{guild_id} (get guild)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct GetGuildUrlParams {
     /// Return the list of channels in the response?
