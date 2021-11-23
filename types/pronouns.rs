@@ -39,5 +39,5 @@ pub enum Pronouns {
     /// other pronouns/ask
     OtherAsk,
     /// avoid pronouns/use name
-    Avoid
+    Avoid,
 }
