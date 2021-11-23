@@ -10,6 +10,7 @@ mod model_type;
 mod role;
 mod user;
 mod ws;
+mod pronouns;
 
 pub use auth::AuthResponse;
 pub use channel::Channel;
@@ -23,3 +24,4 @@ pub use model_type::ModelType;
 pub use role::Role;
 pub use user::*;
 pub use ws::WsConnectionInfo;
+pub use pronouns::Pronouns;
