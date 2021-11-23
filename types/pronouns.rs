@@ -1,43 +1,44 @@
 /// Pronouns are sorted alphabetically.
 #[derive(Serialize, Deserialize, Clone)]
 #[non_exhaustive]
+#[repr(u8)]
 pub enum Pronouns {
     /// he/him
-    HeHim,
+    HeHim = 0,
     /// he/it
-    HeIt,
+    HeIt = 1,
     /// he/she
-    HeShe,
+    HeShe = 2,
     /// he/they
-    HeThey,
+    HeThey = 3,
     /// it/him
-    ItHim,
+    ItHim = 4,
     /// it/its
-    ItIts,
+    ItIts = 5,
     /// it/she
-    ItShe,
+    ItShe = 6,
     /// it/they
-    ItThey,
+    ItThey = 7,
     /// she/he
-    SheHe,
+    SheHe = 8,
     /// she/her
-    SheHer,
+    SheHer = 9,
     /// she/it
-    SheIt,
+    SheIt = 10,
     /// she/they
-    SheThey,
+    SheThey = 11,
     /// they/he
-    TheyHe,
+    TheyHe = 12,
     /// they/it
-    TheyIt,
+    TheyIt = 13,
     /// they/she
-    TheyShe,
+    TheyShe = 14,
     /// they/them
-    TheyThem,
+    TheyThem = 15,
     /// any pronouns
-    Any,
+    Any = 16,
     /// other pronouns/ask
-    OtherAsk,
+    OtherAsk = 17,
     /// avoid pronouns/use name
-    Avoid,
+    Avoid = 18,
 }
