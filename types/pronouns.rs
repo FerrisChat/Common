@@ -1,7 +1,5 @@
-use std::io::ErrorKind::Other;
-
 /// Pronouns are sorted alphabetically.
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Copy)]
 #[non_exhaustive]
 #[repr(u8)]
 pub enum Pronouns {
