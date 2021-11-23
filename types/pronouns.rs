@@ -1,3 +1,5 @@
+use std::io::ErrorKind::Other;
+
 /// Pronouns are sorted alphabetically.
 #[derive(Serialize, Deserialize, Clone)]
 #[non_exhaustive]
@@ -41,4 +43,32 @@ pub enum Pronouns {
     OtherAsk = 17,
     /// avoid pronouns/use name
     Avoid = 18,
+}
+
+impl From<i16> for Pronouns {
+    fn from(x: i16) -> Self {
+        use Pronouns::*;
+        match x {
+            0 => HeHim,
+            1 => HeIt,
+            2 => HeShe,
+            3 => HeThey,
+            4 => ItHim,
+            5 => ItIts,
+            6 => ItShe,
+            7 => ItThey,
+            8 => SheHe,
+            9 => SheHer,
+            10 => SheIt,
+            11 => SheThey,
+            12 => TheyHe,
+            13 => TheyIt,
+            14 => TheyShe,
+            15 => TheyThem,
+            16 => Any,
+            17 => OtherAsk,
+            18 => Avoid,
+            _ => panic!("got {}, out of range for pronoun conversion", x),
+        }
+    }
 }
