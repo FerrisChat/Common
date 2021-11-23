@@ -43,32 +43,30 @@ pub enum Pronouns {
     Avoid = 18,
 }
 
-impl TryFrom<i16> for Pronouns {
-    type Error = ();
-
-    fn try_from(x: i16) -> Result<Self, Self::Error> {
+impl Pronouns {
+    pub fn from_i16(x: i16) -> Option<Self> {
         use Pronouns::*;
         match x {
-            0 => Ok(HeHim),
-            1 => Ok(HeIt),
-            2 => Ok(HeShe),
-            3 => Ok(HeThey),
-            4 => Ok(ItHim),
-            5 => Ok(ItIts),
-            6 => Ok(ItShe),
-            7 => Ok(ItThey),
-            8 => Ok(SheHe),
-            9 => Ok(SheHer),
-            10 => Ok(SheIt),
-            11 => Ok(SheThey),
-            12 => Ok(TheyHe),
-            13 => Ok(TheyIt),
-            14 => Ok(TheyShe),
-            15 => Ok(TheyThem),
-            16 => Ok(Any),
-            17 => Ok(OtherAsk),
-            18 => Ok(Avoid),
-            _ => Err(()),
+            0 => Some(HeHim),
+            1 => Some(HeIt),
+            2 => Some(HeShe),
+            3 => Some(HeThey),
+            4 => Some(ItHim),
+            5 => Some(ItIts),
+            6 => Some(ItShe),
+            7 => Some(ItThey),
+            8 => Some(SheHe),
+            9 => Some(SheHer),
+            10 => Some(SheIt),
+            11 => Some(SheThey),
+            12 => Some(TheyHe),
+            13 => Some(TheyIt),
+            14 => Some(TheyShe),
+            15 => Some(TheyThem),
+            16 => Some(Any),
+            17 => Some(OtherAsk),
+            18 => Some(Avoid),
+            _ => None,
         }
     }
 }
