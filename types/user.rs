@@ -1,4 +1,4 @@
-use crate::types::Guild;
+use crate::types::{Guild, Pronouns};
 use bitflags::bitflags;
 use serde::ser::SerializeStruct;
 
@@ -31,6 +31,9 @@ pub struct User {
     ///
     /// 16 bit signed integer (will be 4 digits)
     pub discriminator: i16,
+
+    /// User's preferred set of pronouns.
+    pub pronouns: Option<Pronouns>,
 }
 
 impl Serialize for User {
@@ -48,6 +51,7 @@ impl Serialize for User {
         self_ser.serialize_field("guilds", &self.guilds)?;
         self_ser.serialize_field("flags", &self.flags)?;
         self_ser.serialize_field("discriminator", &self.discriminator)?;
+        self_ser.serialize_field("pronouns", &self.pronouns)?;
 
         self_ser.end()
     }

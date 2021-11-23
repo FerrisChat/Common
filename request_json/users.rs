@@ -1,3 +1,5 @@
+use crate::types::Pronouns;
+
 /// JSON accepted for POST /v0/users/ (create user)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct UserCreateJson {
@@ -16,12 +18,15 @@ pub struct UserCreateJson {
     /// Password must be at least one Unicode codepoint.
     /// No restrictions are applied besides that.
     pub password: String,
+
+    /// User's preferred set of pronouns.
+    pub pronouns: Option<Pronouns>,
 }
 
 /// JSON accepted for PATCH /v0/users/{user_id}
 #[derive(Serialize, Deserialize, Clone)]
 pub struct UserUpdateJson {
-    /// Users's preferred username.
+    /// User's preferred username.
     pub username: Option<String>,
 
     /// User's email.
@@ -39,4 +44,7 @@ pub struct UserUpdateJson {
     /// Password must be at least one Unicode codepoint.
     /// No restrictions are applied besides that.
     pub password: Option<String>,
+
+    /// User's preferred set of pronouns.
+    pub pronouns: Option<Pronouns>,
 }
