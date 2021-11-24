@@ -57,7 +57,7 @@ impl Serialize for User {
     }
 }
 
-#[derive(Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct BotsOwnedByUser {
     /// Bots owned by the user.
     pub bots: Vec<User>,
