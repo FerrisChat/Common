@@ -97,7 +97,14 @@ pub enum WsOutboundEvent {
     RoleDelete {
         role: Role,
     },
-
+    TypingStart {
+        channel_id: u128,
+        user: User,
+    },
+    TypingEnd {
+        channel_id: u128,
+        user: User,
+    },
     MemberRoleAdd {
         member: Member,
         role: Role,
