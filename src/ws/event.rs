@@ -98,11 +98,11 @@ pub enum WsOutboundEvent {
         role: Role,
     },
     TypingStart {
-        channel_id: u128,
+        channel: Channel,
         user: User,
     },
     TypingEnd {
-        channel_id: u128,
+        channel: Channel,
         user: User,
     },
     MemberRoleAdd {
