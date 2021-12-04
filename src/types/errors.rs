@@ -26,7 +26,7 @@ pub enum ErrorJson {
     /// A catch-all for all other errors.
     Message {
         #[serde(skip)]
-        status: u16,
+        code: u16,
         message: String,
     },
 }
@@ -45,19 +45,13 @@ impl ErrorJson {
     /// Create a new Bad Request object
     #[inline(always)]
     pub const fn new_400(message: String) -> Self {
-        Self::Message {
-            status: 400,
-            message,
-        }
+        Self::Message { code: 400, message }
     }
 
     /// Create a new Not Found object
     #[inline(always)]
     pub const fn new_404(message: String) -> Self {
-        Self::Message {
-            status: 400,
-            message,
-        }
+        Self::Message { code: 400, message }
     }
 
     /// Create a new Too Many Requests object
@@ -73,27 +67,24 @@ impl ErrorJson {
     /// Create a new Forbidden object
     #[inline(always)]
     pub const fn new_403(message: String) -> Self {
-        Self::Message {
-            status: 403,
-            message,
-        }
+        Self::Message { code: 403, message }
     }
 
     /// Create a new Unauthorized object
     #[inline(always)]
     pub const fn new_401(message: String) -> Self {
-        Self::Message {
-            status: 401,
-            message,
-        }
+        Self::Message { code: 401, message }
+    }
+
+    /// Create a new Conflict object
+    #[inline(always)]
+    pub const fn new_409(message: String) -> Self {
+        Self::Message { code: 409, message }
     }
 
     /// Create a new object with an arbitrary HTTP code
     #[inline(always)]
     pub const fn new(message: String, code: u16) -> Self {
-        Self::Message {
-            status: code,
-            message,
-        }
+        Self::Message { code, message }
     }
 }
