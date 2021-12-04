@@ -87,4 +87,14 @@ impl ErrorJson {
     pub const fn new(message: String, code: u16) -> Self {
         Self::Message { code, message }
     }
+
+    /// Get the HTTP status code of this object
+    #[inline(always)]
+    pub const fn get_code(&self) -> u16 {
+        match self {
+            ErrorJson::InternalServerError { .. } => 500,
+            ErrorJson::TooManyRequests { .. } => 429,
+            ErrorJson::Message { code, .. } => *code,
+        }
+    }
 }
