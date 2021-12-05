@@ -1,3 +1,4 @@
+mod auth;
 mod bots;
 mod channels;
 mod guilds;
@@ -7,6 +8,7 @@ mod moderation;
 mod roles;
 mod users;
 
+pub use auth::*;
 pub use bots::*;
 pub use channels::*;
 pub use guilds::*;
