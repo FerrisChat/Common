@@ -1,5 +1,4 @@
 use crate::perms::Permissions;
-use crate::types::Guild;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
