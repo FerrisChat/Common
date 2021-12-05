@@ -9,6 +9,7 @@ mod message;
 mod model_type;
 mod pronouns;
 mod role;
+mod success;
 mod user;
 mod ws;
 
@@ -23,5 +24,6 @@ pub use message::*;
 pub use model_type::ModelType;
 pub use pronouns::Pronouns;
 pub use role::Role;
+pub use success::SuccessJson;
 pub use user::*;
 pub use ws::WsConnectionInfo;
