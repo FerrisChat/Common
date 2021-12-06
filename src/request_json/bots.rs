@@ -16,5 +16,5 @@ pub struct BotUpdateJson {
 #[derive(Serialize, Deserialize, Clone)]
 pub struct BotInviteParams {
     /// ID of guild bot is to be added to
-    pub guild_id: u128
+    pub guild_id: u128,
 }
