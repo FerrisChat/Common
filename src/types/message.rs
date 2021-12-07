@@ -1,5 +1,4 @@
-use crate::types::Embed;
-use crate::types::User;
+use crate::types::{Embed, User, Channel};
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
@@ -16,7 +15,7 @@ pub struct Message {
     pub content: Option<String>,
 
     /// The channel this message is in
-    pub channel_id: u128,
+    pub channel_id: Option<Channel>,
 
     /// The author ID
     ///
