@@ -15,7 +15,7 @@ pub struct Message {
     pub content: Option<String>,
 
     /// The channel this message is in
-    pub channel_id: Option<Channel>,
+    pub channel: Option<Channel>,
 
     /// The author ID
     ///
