@@ -53,8 +53,8 @@ impl Serialize for Message {
 
         self_ser.serialize_field("content", &self.content)?;
 
-        self_ser.serialize_field("channel_id", &self.channel_id)?;
-        self_ser.serialize_field("channel_id_string", &self.channel_id.to_string())?;
+        self_ser.serialize_field("channel", &self.channel)?;
+        self_ser.serialize_field("channel_id_string", &self.channel.id.to_string())?;
 
         self_ser.serialize_field("author_id", &self.author_id)?;
         self_ser.serialize_field("author_id_string", &self.author_id.to_string())?;
