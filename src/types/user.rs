@@ -67,31 +67,31 @@ bitflags! {
     #[derive(Default)]
     pub struct UserFlags: i64 {
         /// This account is a bot.
-        const BOT_ACCOUNT =     0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
+        const BOT_ACCOUNT =     1 << 0;
         /// This account is a verified scam.
         /// Verified is both verified by staff, and reported by a large amount of people.
-        const VERIFIED_SCAM =   0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010;
+        const VERIFIED_SCAM =   1 << 1;
         /// This account could possibly be a scam, as many users have reported it as such.
-        const POSSIBLE_SCAM =   0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0100;
+        const POSSIBLE_SCAM =   1 << 2;
         /// This account has had either its email address or token changed within the past 24 hours.
         /// It may not be controlled by its real owner, so take precautions when using mod actions against them.
-        const COMPROMISED =     0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_1000;
+        const COMPROMISED =     1 << 3;
         /// This account is a system account.
-        const SYSTEM =          0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001_0000;
+        const SYSTEM =          1 << 4;
         /// This bot was one of the first 100 bots created on the platform.
-        const EARLY_BOT =       0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010_0000;
+        const EARLY_BOT =       1 << 5;
         /// This account is the owner of one of the first 100 bots created on the platform.
-        const EARLY_BOT_DEV =   0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0100_0000;
+        const EARLY_BOT_DEV =   1 << 6;
         /// This account was one of the first 1,000 created on the platform.
-        const EARLY_SUPPORTER = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_1000_0000;
+        const EARLY_SUPPORTER = 1 << 7;
         /// This account is owned by someone who has donated to help keep the platform running, and support development.
-        const DONATOR =         0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001_0000_0000;
+        const DONATOR =         1 << 8;
         /// This account is owned by a maintainer of a API wrapper for the FerrisChat API in a language.
-        const LIBRARY_DEV =     0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010_0000_0000;
+        const LIBRARY_DEV =     1 << 9;
         /// This account is owned by someone who has contributed to FerrisChat's codebase in some way.
-        const CONTRIBUTOR =     0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0100_0000_0000;
+        const CONTRIBUTOR =     1 << 10;
         /// This account is owned by a core developer/maintainer of FerrisChat itself.
-        const MAINTAINER =      0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_1000_0000_0000;
+        const MAINTAINER =      1 << 11;
     }
 }
 
