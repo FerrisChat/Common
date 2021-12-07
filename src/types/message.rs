@@ -1,4 +1,4 @@
-use crate::types::{Embed, User, Channel};
+use crate::types::{Channel, Embed, User};
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
