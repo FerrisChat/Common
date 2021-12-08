@@ -11,3 +11,10 @@ pub struct BotUpdateJson {
     /// Bot's username
     pub username: Option<String>,
 }
+
+/// POST /v0/bots/{bot_id}/add
+#[derive(Serialize, Deserialize, Clone)]
+pub struct BotInviteJson {
+    /// ID of guild bot is to be added to
+    pub guild_id: u128,
+}

@@ -1,5 +1,4 @@
-use crate::types::Embed;
-use crate::types::User;
+use crate::types::{Channel, Embed, User};
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
@@ -16,6 +15,9 @@ pub struct Message {
     pub content: Option<String>,
 
     /// The channel this message is in
+    pub channel: Option<Channel>,
+
+    /// The ID of the channel this message is in
     pub channel_id: u128,
 
     /// The author ID
@@ -54,6 +56,7 @@ impl Serialize for Message {
 
         self_ser.serialize_field("content", &self.content)?;
 
+        self_ser.serialize_field("channel", &self.channel)?;
         self_ser.serialize_field("channel_id", &self.channel_id)?;
         self_ser.serialize_field("channel_id_string", &self.channel_id.to_string())?;
 
