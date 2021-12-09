@@ -1,8 +1,8 @@
 use bitflags::bitflags;
 
 bitflags! {
-    #[derive(Default, Serialize, Deserialize)]
-    pub struct Intents: u64 {
+    #[derive(Default)]
+    pub struct Intents: i64 {
         /// Messages in a guild.
         const GUILD_MESSAGES = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
         /// Messages in DMs.
@@ -26,3 +26,5 @@ bitflags! {
         const MEMBER_EVENT =   Self::MEMBER_CREATE.bits | Self::MEMBER_DELETE.bits | Self::MEMBER_UPDATE.bits;
     }
 }
+
+serde_for_bitflags!(Intents);

@@ -1,4 +1,4 @@
-/// JSON accepted for POST /v0/guilds/{guild_id}/channels/ (create channel)
+/// JSON accepted for POST `/v0/guilds/{guild_id}/channels/` (create channel)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct ChannelCreateJson {
     /// Channel name.
@@ -7,7 +7,7 @@ pub struct ChannelCreateJson {
     pub name: String,
 }
 
-// PATCH /v0/channels/{channel_id}
+/// PATCH `/v0/channels/{channel_id}`
 #[derive(Serialize, Deserialize, Clone)]
 pub struct ChannelUpdateJson {
     /// Channel name.

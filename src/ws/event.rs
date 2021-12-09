@@ -1,10 +1,10 @@
 use crate::types::{Channel, Guild, Invite, Member, Message, Role, User};
-use std::boxed::Box;
+use crate::ws::Intents;
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
 pub enum WsInboundEvent {
-    Identify { token: String, intents: u64 },
+    Identify { token: String, intents: Intents },
 
     // ping + pong payloads
     Ping,
@@ -13,6 +13,7 @@ pub enum WsInboundEvent {
 
 #[derive(Serialize, Deserialize)]
 #[serde(tag = "c", content = "d")]
+#[allow(clippy::doc_markdown)]
 /// Server -> client WebSocket events.
 pub enum WsOutboundEvent {
     /// Fired when an `Identify` is accepted as valid.
@@ -73,8 +74,8 @@ pub enum WsOutboundEvent {
         member: Member,
     },
     MemberUpdate {
-        old: Box<Member>,
-        new: Box<Member>,
+        old: Member,
+        new: Member,
     },
     MemberDelete {
         member: Member,

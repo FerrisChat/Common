@@ -33,7 +33,8 @@ pub enum ErrorJson {
 
 impl ErrorJson {
     /// Create a new Internal Server Error object.
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_500(reason: String, is_bug: bool, link: Option<String>) -> Self {
         Self::InternalServerError {
             reason,
@@ -43,19 +44,22 @@ impl ErrorJson {
     }
 
     /// Create a new Bad Request object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_400(message: String) -> Self {
         Self::Message { code: 400, message }
     }
 
     /// Create a new Not Found object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_404(message: String) -> Self {
         Self::Message { code: 400, message }
     }
 
     /// Create a new Too Many Requests object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_429(count: u32, duration: u32, retry_after: i32) -> Self {
         Self::TooManyRequests {
             count,
@@ -65,31 +69,36 @@ impl ErrorJson {
     }
 
     /// Create a new Forbidden object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_403(message: String) -> Self {
         Self::Message { code: 403, message }
     }
 
     /// Create a new Unauthorized object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_401(message: String) -> Self {
         Self::Message { code: 401, message }
     }
 
     /// Create a new Conflict object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new_409(message: String) -> Self {
         Self::Message { code: 409, message }
     }
 
     /// Create a new object with an arbitrary HTTP code
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn new(message: String, code: u16) -> Self {
         Self::Message { code, message }
     }
 
     /// Get the HTTP status code of this object
-    #[inline(always)]
+    #[inline]
+    #[must_use]
     pub const fn get_code(&self) -> u16 {
         match self {
             ErrorJson::InternalServerError { .. } => 500,

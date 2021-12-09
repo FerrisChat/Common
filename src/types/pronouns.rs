@@ -44,7 +44,9 @@ pub enum Pronouns {
 }
 
 impl Pronouns {
-    pub fn from_i16(x: i16) -> Option<Self> {
+    #[must_use]
+    pub const fn from_i16(x: i16) -> Option<Self> {
+        #[allow(clippy::enum_glob_use)]
         use Pronouns::*;
         match x {
             0 => Some(HeHim),

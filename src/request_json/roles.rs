@@ -1,6 +1,6 @@
 use crate::perms::Permissions;
 
-/// JSON accepted for POST /v0/guilds/{guild_id}/roles
+/// JSON accepted for POST `/v0/guilds/{guild_id}/roles`
 #[derive(Serialize, Deserialize, Clone)]
 pub struct RoleCreateJson {
     /// Role name
@@ -22,7 +22,7 @@ pub struct RoleCreateJson {
     pub permissions: Option<Permissions>,
 }
 
-/// JSON accepted for PATCH /v0/guilds/{guild_id}/roles/{role_id}
+/// JSON accepted for PATCH `/v0/guilds/{guild_id}/roles/{role_id}`
 #[derive(Serialize, Deserialize, Clone)]
 pub struct RoleUpdateJson {
     /// Role name
@@ -32,7 +32,11 @@ pub struct RoleUpdateJson {
 
     /// Role color
     ///
-    /// Must be an integer between 0 and 16777215 (0xFFFFFF)
+    /// Must be an integer between 0 and 16777216
+    ///
+    /// Set to 16777216 to remove color
+    ///
+    /// Anything equal to or below 16777215 will be interpreted as a color
     pub color: Option<i32>,
 
     /// Role position

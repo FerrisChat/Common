@@ -1,4 +1,4 @@
-/// JSON accepted for POST /v0/guilds/{guild_id}/members/{member_id}/ban (ban user)
+/// JSON accepted for POST `/v0/guilds/{guild_id}/members/{member_id}/ban` (ban user)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct BanJson {
     /// Amount of seconds to ban the user for
@@ -8,13 +8,15 @@ pub struct BanJson {
     /// Reason for ban, will be shown to the user and in audit log
     pub reason: Option<String>,
 }
-/// JSON accepted for POST /v0/guilds/{guild_id}/members/{member_id}/kick (kick user)
+
+/// JSON accepted for POST `/v0/guilds/{guild_id}/members/{member_id}/kick` (kick user)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct KickJson {
     /// Reason for kick, will be shown to the user and in audit log
     pub reason: Option<String>,
 }
-/// JSON accepted for POST /v0/guilds/{guild_id}/members/{member_id}/mute (mute user)
+
+/// JSON accepted for POST `/v0/guilds/{guild_id}/members/{member_id}/mute` (mute user)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct MuteJson {
     /// Amount of seconds to mute the user for

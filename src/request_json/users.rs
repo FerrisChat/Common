@@ -1,6 +1,6 @@
 use crate::types::Pronouns;
 
-/// JSON accepted for POST /v0/users/ (create user)
+/// JSON accepted for POST `/v0/users/` (create user)
 #[derive(Serialize, Deserialize, Clone)]
 pub struct UserCreateJson {
     /// User's preferred username.
@@ -23,7 +23,7 @@ pub struct UserCreateJson {
     pub pronouns: Option<Pronouns>,
 }
 
-/// JSON accepted for PATCH /v0/users/{user_id}
+/// JSON accepted for PATCH `/v0/users/{user_id}`
 #[derive(Serialize, Deserialize, Clone)]
 pub struct UserUpdateJson {
     /// User's preferred username.
