@@ -10,6 +10,9 @@ pub struct BotCreateJson {
 pub struct BotUpdateJson {
     /// Bot's username
     pub username: Option<String>,
+
+    /// Bot's avatar,
+    pub avatar: Option<String>,
 }
 
 /// POST `/v0/bots/{bot_id}/add`
