@@ -1,9 +1,7 @@
 use std::ops::BitOr;
 use tribool::Tribool;
 
-#[derive(
-    Serialize, Deserialize, Default, Debug, Ord, PartialOrd, Eq, PartialEq, Copy, Clone, Hash,
-)]
+#[derive(Serialize, Deserialize, Default, Debug, PartialOrd, PartialEq, Copy, Clone, Hash)]
 pub struct Permissions {
     pub send_messages: Tribool,
     pub delete_messages: Tribool,
