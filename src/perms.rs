@@ -1,4 +1,4 @@
-use std::ops::BitOr;
+use std::ops::{BitOr, BitOrAssign};
 use tribool::Tribool;
 
 #[derive(Serialize, Deserialize, Default, Debug, PartialOrd, PartialEq, Copy, Clone, Hash)]
@@ -61,5 +61,29 @@ impl Permissions {
             add_bots: Tribool::Indeterminate,
             adminstrator: Tribool::Indeterminate,
         }
+    }
+}
+
+impl BitOr for Permissions {
+    type Output = Self;
+
+    fn bitor(self, other: Self) -> Self::Output {
+        Self {
+            send_messages: self.send_messages | other.send_messages,
+            delete_messages: self.delete_messages | other.delete_messages,
+            edit_channels: self.edit_channels | other.edit_channels,
+            add_remove_channels: self.add_remove_channels | other.add_remove_channels,
+            kick_members: self.kick_members | other.kick_members,
+            ban_members: self.ban_members | other.ban_members,
+            mute_members: self.mute_members | other.mute_members,
+            add_bots: self.add_bots | other.add_bots,
+            adminstrator: self.adminstrator | other.adminstrator,
+        }
+    }
+}
+
+impl BitOrAssign for Permissions {
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
     }
 }
