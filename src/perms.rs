@@ -18,7 +18,8 @@ pub struct Permissions {
 
 impl Permissions {
     #[inline]
-    pub fn all_false() -> Self {
+    #[must_use]
+    pub const fn all_false() -> Self {
         Self {
             send_messages: Tribool::False,
             delete_messages: Tribool::False,
@@ -33,7 +34,8 @@ impl Permissions {
     }
 
     #[inline]
-    pub fn all_true() -> Self {
+    #[must_use]
+    pub const fn all_true() -> Self {
         Self {
             send_messages: Tribool::True,
             delete_messages: Tribool::True,
@@ -48,7 +50,8 @@ impl Permissions {
     }
 
     #[inline]
-    pub fn empty() -> Self {
+    #[must_use]
+    pub const fn empty() -> Self {
         Self {
             send_messages: Tribool::Indeterminate,
             delete_messages: Tribool::Indeterminate,
