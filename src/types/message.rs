@@ -15,7 +15,7 @@ pub struct Message {
     pub content: Option<String>,
 
     /// The channel this message is in
-    pub channel: Option<Channel>,
+    pub channel: Channel,
 
     /// The ID of the channel this message is in
     pub channel_id: u128,
