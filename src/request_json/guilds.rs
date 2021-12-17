@@ -26,4 +26,7 @@ pub struct GuildUpdateJson {
     /// Guild name.
     /// Must be between 1 and 100 Unicode codepoints.
     pub name: Option<String>,
+
+    /// Guild's avatar, base64 encoded.
+    pub avatar: Option<String>,
 }
