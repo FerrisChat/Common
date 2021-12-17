@@ -20,6 +20,9 @@ pub struct Guild {
     /// String up to 100 characters long.
     pub name: String,
 
+    /// The guild's avatar url
+    pub avatar: Option<String>,
+
     /// Channels list
     ///
     /// May not be sent at times to reduce bandwidth usage.
@@ -46,7 +49,7 @@ impl Serialize for Guild {
     where
         S: Serializer,
     {
-        let mut self_ser = serializer.serialize_struct("Guild", 9)?;
+        let mut self_ser = serializer.serialize_struct("Guild", 10)?;
 
         self_ser.serialize_field("id", &self.id)?;
         self_ser.serialize_field("id_string", &self.id.to_string())?;
@@ -59,6 +62,7 @@ impl Serialize for Guild {
         self_ser.serialize_field("members", &self.members)?;
         self_ser.serialize_field("roles", &self.roles)?;
         self_ser.serialize_field("flags", &self.flags)?;
+        self_ser.serialize_field("avatar", &self.avatar)?;
         self_ser.end()
     }
 }
