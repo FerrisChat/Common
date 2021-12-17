@@ -71,9 +71,9 @@ bitflags! {
     #[derive(Default)]
     pub struct GuildFlags: i64 {
         /// This guild's purpose has been verified (i.e. for content creators, companies, etc.)
-        const VERIFIED_GUILD = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0001;
+        const VERIFIED_GUILD = 1 << 0;
         /// This guild has been reported and confirmed as promoting scams/other potentially harmful content
-        const VERIFIED_SCAM  = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0010;
+        const VERIFIED_SCAM  = 1 << 1;
     }
 }
 
