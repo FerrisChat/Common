@@ -6,7 +6,7 @@ pub struct MessageCreateJson {
     /// Message content.
     pub content: String,
     /// Message embed.
-    pub embed: Option<Embed>,
+    pub embeds: Option<Vec<Embed>>,
     /// Message Nonce
     pub nonce: Option<String>,
 }
@@ -17,7 +17,7 @@ pub struct MessageUpdateJson {
     /// Message content.
     pub content: Option<String>,
     /// Message Embed.
-    pub embed: Option<Embed>,
+    pub embeds: Option<Vec<Embed>>,
 }
 
 /// GET `/v0/channels/{channel_id}/messages`
