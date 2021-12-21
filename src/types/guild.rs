@@ -20,8 +20,8 @@ pub struct Guild {
     /// String up to 100 characters long.
     pub name: String,
 
-    /// The guild's avatar url
-    pub avatar: Option<String>,
+    /// The guild's icon url
+    pub icon: Option<String>,
 
     /// Channels list
     ///
@@ -62,7 +62,7 @@ impl Serialize for Guild {
         self_ser.serialize_field("members", &self.members)?;
         self_ser.serialize_field("roles", &self.roles)?;
         self_ser.serialize_field("flags", &self.flags)?;
-        self_ser.serialize_field("avatar", &self.avatar)?;
+        self_ser.serialize_field("icon", &self.icon)?;
         self_ser.end()
     }
 }
