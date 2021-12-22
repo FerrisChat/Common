@@ -1,5 +1,6 @@
 mod auth;
 mod channel;
+mod dm_channel;
 mod embed;
 mod errors;
 mod guild;
@@ -15,6 +16,7 @@ mod ws;
 
 pub use auth::AuthResponse;
 pub use channel::Channel;
+pub use dm_channel::DMChannel;
 pub use embed::Embed;
 pub use errors::*;
 pub use guild::*;
