@@ -1,6 +1,7 @@
 mod auth;
 mod bots;
 mod channels;
+mod dm_channels;
 mod guilds;
 mod invites;
 mod messages;
@@ -11,6 +12,7 @@ mod users;
 pub use auth::*;
 pub use bots::*;
 pub use channels::*;
+pub use dm_channels::*;
 pub use guilds::*;
 pub use invites::*;
 pub use messages::*;
