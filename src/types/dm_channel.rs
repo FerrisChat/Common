@@ -1,3 +1,5 @@
+use crate::types::User;
+
 #[derive(Deserialize, Clone)]
 pub struct DMChannel {
     /// The channel ID
@@ -13,5 +15,5 @@ pub struct DMChannel {
     /// The users inside the channel
     ///
     /// Vec of 128 bit unsigned integers
-    pub users: Vec<u128>,
+    pub users: Vec<User>,
 }
