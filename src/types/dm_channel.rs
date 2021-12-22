@@ -13,5 +13,5 @@ pub struct DMChannel {
     /// The users inside the channel
     ///
     /// Vec of 128 bit unsigned integers
-    pub guild_id: Vec<u128>,
+    pub users: Vec<u128>,
 }
