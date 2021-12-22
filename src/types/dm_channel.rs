@@ -1,4 +1,5 @@
 use crate::types::User;
+use serde::{Serialize, Serializer};
 
 #[derive(Deserialize, Clone)]
 pub struct DMChannel {
