@@ -11,3 +11,15 @@ pub struct DMChannelCreateJson {
     /// Must be between 1 and 100 Unicode codepoints.
     pub name: Option<String>,
 }
+
+/// GET `/v0/users/me/channels`
+#[derive(Serialize, Deserialize, Clone)]
+pub struct GetSelfDmChannelParams {
+    pub limit: Option<i64>,
+}
+
+/// POST `/v0/users/me/channels`
+#[derive(Serialize, Deserialize, Clone)]
+pub struct CreateDmChannelParams {
+    pub users: String,
+}
