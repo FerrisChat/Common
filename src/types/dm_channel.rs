@@ -37,6 +37,8 @@ impl Serialize for DMChannel {
         self_ser.serialize_field("name", &self.name)?;
 
         self_ser.serialize_field("users", &self.users)?;
+
+        self_ser.serialize_field("group", &self.group)?;
         self_ser.end()
     }
 }
