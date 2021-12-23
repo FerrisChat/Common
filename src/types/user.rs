@@ -34,6 +34,11 @@ pub struct User {
 
     /// User's preferred set of pronouns.
     pub pronouns: Option<Pronouns>,
+
+    /// Is Bot
+    ///
+    /// Boolean. True if user is a bot
+    pub is_bot: bool,
 }
 
 impl Serialize for User {
@@ -52,6 +57,7 @@ impl Serialize for User {
         self_ser.serialize_field("flags", &self.flags)?;
         self_ser.serialize_field("discriminator", &self.discriminator)?;
         self_ser.serialize_field("pronouns", &self.pronouns)?;
+        self_ser.serialize_field("is_bot", &self.is_bot)?;
 
         self_ser.end()
     }
