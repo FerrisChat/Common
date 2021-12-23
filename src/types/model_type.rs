@@ -10,5 +10,6 @@ pub enum ModelType {
     /// as these types are only used for cases where the database needs a ID but no other option applies.
     InternalUse = 5,
     DmChannel = 6,
+    Bot= 7,
     Unknown = !0,
 }
