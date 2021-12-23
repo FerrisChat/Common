@@ -13,10 +13,15 @@ pub struct DMChannel {
     /// String of max length 100 chars
     pub name: Option<String>,
 
-    /// The users inside the channel
+    /// The users inside the DM channel
     ///
     /// Vec of `User`s
     pub users: Vec<User>,
+
+    /// Boolean indicating whether the DM being created is a group or not.
+    /// If false is passed, it will be a regular direct message between 2 people
+    /// true/false
+    pub group: bool,
 }
 
 impl Serialize for DMChannel {
