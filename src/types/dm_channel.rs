@@ -1,4 +1,5 @@
 use crate::types::User;
+use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
 #[derive(Deserialize, Clone)]
@@ -29,7 +30,7 @@ impl Serialize for DMChannel {
     where
         S: Serializer,
     {
-        let mut self_ser = serializer.serialize_struct("DMChannel", 4)?;
+        let mut self_ser = serializer.serialize_struct("DMChannel", 5)?;
 
         self_ser.serialize_field("id", &self.id)?;
         self_ser.serialize_field("id_string", &self.id.to_string())?;
