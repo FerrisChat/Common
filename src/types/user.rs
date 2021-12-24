@@ -100,6 +100,8 @@ bitflags! {
         const MAINTAINER =             1 << 11;
         /// This account is owned by someone who has won an official FerrisChat event.
         const CHRISTMAS_EVENT_WINNER = 1 << 12;
+        /// This account is owned by someone who has reported/discovered many important bugs in FerrisChat.
+        const BUG_HUNTER             = 1 << 13;
     }
 }
 
