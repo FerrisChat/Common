@@ -1,4 +1,4 @@
-use crate::perms::Permissions;
+use crate::perms::GuildPermissions;
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
@@ -29,10 +29,10 @@ pub struct Role {
     /// Integer between 0 and 1023
     pub position: i16,
 
-    /// The role permissions
+    /// The role guild permissions
     ///
     /// Bitflags representing permission bits
-    pub permissions: Permissions,
+    pub guild_permissions: GuildPermissions,
 }
 
 impl Serialize for Role {
@@ -51,7 +51,7 @@ impl Serialize for Role {
         self_ser.serialize_field("name", &self.name)?;
         self_ser.serialize_field("color", &self.color)?;
         self_ser.serialize_field("position", &self.position)?;
-        self_ser.serialize_field("permissions", &self.permissions)?;
+        self_ser.serialize_field("guild_permissions", &self.guild_permissions)?;
 
         self_ser.end()
     }

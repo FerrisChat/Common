@@ -1,4 +1,4 @@
-use crate::perms::Permissions;
+use crate::perms::GuildPermissions;
 
 /// JSON accepted for POST `/v0/guilds/{guild_id}/roles`
 #[derive(Serialize, Deserialize, Clone)]
@@ -18,8 +18,8 @@ pub struct RoleCreateJson {
     /// Must be an integer between 0 and 1023
     pub position: Option<i16>,
 
-    /// Role permissions
-    pub permissions: Option<Permissions>,
+    /// Role guild permissions
+    pub guild_permissions: Option<GuildPermissions>,
 }
 
 /// JSON accepted for PATCH `/v0/guilds/{guild_id}/roles/{role_id}`
@@ -45,5 +45,5 @@ pub struct RoleUpdateJson {
     pub position: Option<i16>,
 
     /// Role permissions
-    pub permissions: Option<Permissions>,
+    pub permissions: Option<GuildPermissions>,
 }
