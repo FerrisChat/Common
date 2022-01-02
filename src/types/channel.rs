@@ -1,3 +1,5 @@
+use crate::perms::ChannelPermissions;
+
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 
@@ -17,6 +19,11 @@ pub struct Channel {
     ///
     /// 128 bit unsigned integer
     pub guild_id: u128,
+
+    /// The channel's permission overwrites
+    ///
+    /// Vec of (u128, ChannelPermissions)
+    pub permission_overwrites: Vec<(u128, ChannelPermissions)>,
 }
 
 impl Serialize for Channel {
@@ -24,7 +31,7 @@ impl Serialize for Channel {
     where
         S: Serializer,
     {
-        let mut self_ser = serializer.serialize_struct("Channel", 5)?;
+        let mut self_ser = serializer.serialize_struct("Channel", 6)?;
 
         self_ser.serialize_field("id", &self.id)?;
         self_ser.serialize_field("id_string", &self.id.to_string())?;
@@ -33,6 +40,8 @@ impl Serialize for Channel {
         self_ser.serialize_field("guild_id_string", &self.guild_id.to_string())?;
 
         self_ser.serialize_field("name", &self.name)?;
+
+        self_ser.serialize_field("permissions_overwrites", &self.permission_overwrites)?;
         self_ser.end()
     }
 }
