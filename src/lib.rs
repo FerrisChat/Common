@@ -3,7 +3,7 @@
 #![allow(
     clippy::doc_markdown,
     clippy::module_name_repetitions,
-    clippy::wildcard_imports,
+    clippy::wildcard_imports
 )]
 
 pub mod models;

@@ -84,28 +84,28 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                     let targets = resolve_struct_targets(s.fields.iter());
 
                     let (u128_fields, string_fields) = s
-                     .fields
-                     .iter()
-                     .map(|f| {
-                         let field = f.ident.as_ref().unwrap();
-                         if targets.contains(&(field, false)) {
-                             (
-                                 quote! { #field: self.#field.parse().unwrap() },
-                                 quote! { #field: self.#field.to_string() },
-                             )
-                         } else if targets.contains(&(field, true)) {
-                             (
-                                 quote! { #field: CastSnowflakes::into_u128_ids(self.#field) },
-                                 quote! { #field: CastSnowflakes::into_string_ids(self.#field) },
-                             )
-                         } else {
-                             (
-                                 quote! { #field: self.#field },
-                                 quote! { #field: self.#field },
-                             )
-                         }
-                     })
-                     .unzip::<_, _, Vec<_>, Vec<_>>();
+                        .fields
+                        .iter()
+                        .map(|f| {
+                            let field = f.ident.as_ref().unwrap();
+                            if targets.contains(&(field, false)) {
+                                (
+                                    quote! { #field: self.#field.parse().unwrap() },
+                                    quote! { #field: self.#field.to_string() },
+                                )
+                            } else if targets.contains(&(field, true)) {
+                                (
+                                    quote! { #field: CastSnowflakes::into_u128_ids(self.#field) },
+                                    quote! { #field: CastSnowflakes::into_string_ids(self.#field) },
+                                )
+                            } else {
+                                (
+                                    quote! { #field: self.#field },
+                                    quote! { #field: self.#field },
+                                )
+                            }
+                        })
+                        .unzip::<_, _, Vec<_>, Vec<_>>();
 
                     quote! {
                         impl CastSnowflakes for #name<u128> {
