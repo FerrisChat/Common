@@ -1,0 +1,24 @@
+[package]
+name = "common"
+version = "0.4.0"
+authors = ["jay3332"]
+edition = "2021"
+description = "Common utilities and types for FerrisChat"
+homepage = "https://ferris.chat"
+license = "MIT"
+repository = "https://github.com/FerrisChat/Common"
+readme = "README.md"
+keywords = ["ferrischat"]
+categories = []
+
+[workspace]
+members = [
+    "macros",
+]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+bitflags = "1.3"
+
+[dependencies.macros]
+path = "macros"
