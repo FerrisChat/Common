@@ -7,6 +7,7 @@
 )]
 
 pub mod models;
+pub mod util;
 
 /// A trait that is implemented on all types that can be used as a snowflake.
 pub trait Snowflake: Clone {}
@@ -60,11 +61,15 @@ impl<T: CastSnowflakes> CastSnowflakes for Vec<T> {
     type StringResult = Vec<T::StringResult>;
 
     fn into_u128_ids(self) -> Self::U128Result {
-        self.into_iter().map(CastSnowflakes::into_u128_ids).collect()
+        self.into_iter()
+            .map(CastSnowflakes::into_u128_ids)
+            .collect()
     }
 
     fn into_string_ids(self) -> Self::StringResult {
-        self.into_iter().map(CastSnowflakes::into_string_ids).collect()
+        self.into_iter()
+            .map(CastSnowflakes::into_string_ids)
+            .collect()
     }
 }
 

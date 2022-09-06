@@ -25,7 +25,7 @@ fn resolve_struct_targets<'a>(
     i: impl Iterator<Item = &'a syn::Field>,
 ) -> Vec<(&'a syn::Ident, bool)> {
     i.filter_map(|f| {
-        let sample = f.ty.to_token_stream().to_string().replace(" ", "");
+        let sample = f.ty.to_token_stream().to_string().replace(' ', "");
 
         if sample == "Id" {
             Some((f.ident.as_ref().unwrap(), false))
@@ -45,7 +45,7 @@ fn resolve_struct_targets<'a>(
 fn resolve_tuple_targets(i: impl Iterator<Item = &syn::Field>) -> Vec<(usize, bool)> {
     i.enumerate()
         .filter_map(|(i, f)| {
-            let sample = f.ty.to_token_stream().to_string().replace(" ", "");
+            let sample = f.ty.to_token_stream().to_string().replace(' ', "");
 
             if sample == "Id" {
                 Some((i, false))

@@ -84,4 +84,3 @@ impl<Id: Snowflake> Guild<Id> {
         &self.partial.owner_id
     }
 }
-
