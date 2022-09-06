@@ -1,5 +1,6 @@
 #![allow(clippy::use_self)]
 
+use super::guild::PartialGuild;
 use crate::crate_prelude::*;
 use serde::{Deserialize, Serialize};
 
@@ -17,6 +18,10 @@ pub struct User<Id: Snowflake = u128> {
     pub discriminator: u16,
     /// The URL of the user's avatar. This is `None` if the user has no avatar.
     pub avatar: Option<String>,
+    /// The URL of the user's banner. This is `None` if the user has no banner.
+    pub banner: Option<String>,
+    /// The user's bio. This is `None` if the user has no bio.
+    pub bio: Option<String>,
     /// A bitmask of extra information associated with this user.
     pub flags: UserFlags,
 }
@@ -98,7 +103,7 @@ pub struct ClientUser<Id: Snowflake = u128> {
     pub email: Option<String>,
     /// A list of guilds that the client is a member of. This is a list of partial guilds that
     /// include information such as the guild's ID, name, icon, and owner.
-    pub guilds: Vec<()>, // TODO
+    pub guilds: Vec<PartialGuild<Id>>,
     /// A list of server folders that the user organized their guilds in via the client UI.
     ///
     /// Guilds that were not placed in any folders have a path of `None`. Else, the path is a list
@@ -131,7 +136,11 @@ impl CastSnowflakes for ClientUser<u128> {
         ClientUser {
             user: self.user.into_string_ids(),
             email: self.email,
-            guilds: self.guilds,
+            guilds: self
+                .guilds
+                .into_iter()
+                .map(CastSnowflakes::into_string_ids)
+                .collect(),
             folders: self.folders.map(|folders| {
                 folders
                     .into_iter()
@@ -158,7 +167,11 @@ impl CastSnowflakes for ClientUser<String> {
         ClientUser {
             user: self.user.into_u128_ids(),
             email: self.email,
-            guilds: self.guilds,
+            guilds: self
+                .guilds
+                .into_iter()
+                .map(CastSnowflakes::into_u128_ids)
+                .collect(),
             folders: self.folders.map(|folders| {
                 folders
                     .into_iter()
