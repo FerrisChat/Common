@@ -1,3 +1,5 @@
+#![allow(clippy::use_self)]
+
 use crate::crate_prelude::*;
 use serde::{Deserialize, Serialize};
 
@@ -53,6 +55,8 @@ bitflags::bitflags! {
         /// This account is owned by someone who has reported or fixed a major bug in FerrisChat's
         /// codebase.
         const BUG_HUNTER = 1 << 11;
+        /// The user is the winner of a FerrisChat event.
+        const EVENT_WINNER = 1 << 12;
     }
 }
 
@@ -105,6 +109,8 @@ pub struct ClientUser<Id: Snowflake = u128> {
     ///
     /// If the client of this user is a bot, this is `None`.
     pub folders: Option<Vec<GuildFolder<Id>>>,
+    /// A list of relationships that the client has with other users.
+    pub relationships: Vec<Relationship<Id>>,
 }
 
 impl CastSnowflakes for ClientUser<u128> {
@@ -132,6 +138,11 @@ impl CastSnowflakes for ClientUser<u128> {
                     .map(CastSnowflakes::into_string_ids)
                     .collect()
             }),
+            relationships: self
+                .relationships
+                .into_iter()
+                .map(CastSnowflakes::into_string_ids)
+                .collect(),
         }
     }
 }
@@ -154,6 +165,11 @@ impl CastSnowflakes for ClientUser<String> {
                     .map(CastSnowflakes::into_u128_ids)
                     .collect()
             }),
+            relationships: self
+                .relationships
+                .into_iter()
+                .map(CastSnowflakes::into_u128_ids)
+                .collect(),
         }
     }
 
@@ -163,4 +179,23 @@ impl CastSnowflakes for ClientUser<String> {
     {
         self
     }
+}
+
+/// Represents the type of relationship a user has with another user.
+#[derive(Copy, Clone, Debug, Deserialize, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum RelationshipType {
+    /// The user is added as a friend.
+    Friend,
+    /// The user is blocked.
+    Blocked,
+}
+
+#[derive(CastSnowflakes, Clone, Debug, Serialize)]
+pub struct Relationship<Id: Snowflake = u128> {
+    /// The ID of the user that this relationship is with.
+    pub id: Id,
+    /// The type of relationship this is.
+    #[serde(rename = "type")]
+    pub kind: RelationshipType,
 }
