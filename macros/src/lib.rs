@@ -1,11 +1,17 @@
 //! This implements the `CastSnowflakes` derive macro. Code quality here is horrible, so think twice
 //! before snatching some code from here.
+//!
+//! This was a very quickly implemented derive trait, so here are some quick requirements:
+//! - **Must** have a generic type parameter named `Id`. no other name will work.
+//! - When a type inside of the struct or enum uses `Id`, it must be either `Id` by itself, or
+//! a type that implements `CastSnowflakes`. For example `Vec<Id>` or `Option<Vec<Id>>` are valid
+//! since they implement `CastSnowflakes`.
 
 #![feature(anonymous_lifetime_in_impl_trait)]
 #![allow(clippy::missing_panics_doc)]
 
 use proc_macro::TokenStream;
-use quote::quote;
+use quote::{quote, ToTokens};
 use syn::{self, Data};
 
 #[proc_macro_derive(CastSnowflakes)]
@@ -18,57 +24,40 @@ pub fn cast_snowflakes_derive(input: TokenStream) -> TokenStream {
 fn resolve_struct_targets<'a>(
     i: impl Iterator<Item = &'a syn::Field>,
 ) -> Vec<(&'a syn::Ident, bool)> {
-    i.filter_map(|f| match f.ty {
-        syn::Type::Path(ref t) => t.path.get_ident().map_or_else(
-            || {
-                t.path.segments.first().and_then(|seg| match seg.arguments {
-                    syn::PathArguments::AngleBracketed(ref args) => {
-                        if let Some(syn::GenericArgument::Type(ty)) = args.args.first() {
-                            match ty {
-                                syn::Type::Path(ref t) => t.path.get_ident().and_then(|ident| {
-                                    (*ident == "Id").then_some((f.ident.as_ref().unwrap(), true))
-                                }),
-                                _ => None,
-                            }
-                        } else {
-                            None
-                        }
-                    }
-                    _ => None,
-                })
-            },
-            |ident| (*ident == "Id").then_some((f.ident.as_ref().unwrap(), false)),
-        ),
-        _ => None,
+    i.filter_map(|f| {
+        let sample = f.ty.to_token_stream().to_string().replace(' ', "");
+
+        if sample == "Id" {
+            Some((f.ident.as_ref().unwrap(), false))
+        } else if sample.contains("<Id>")
+            || sample.contains("<Id,")
+            || sample.contains(",Id,")
+            || sample.contains(",Id>")
+        {
+            Some((f.ident.as_ref().unwrap(), true))
+        } else {
+            None
+        }
     })
     .collect()
 }
 
 fn resolve_tuple_targets(i: impl Iterator<Item = &syn::Field>) -> Vec<(usize, bool)> {
     i.enumerate()
-        .filter_map(|(i, f)| match f.ty {
-            syn::Type::Path(ref t) => t.path.get_ident().map_or_else(
-                || {
-                    t.path.segments.first().and_then(|seg| match seg.arguments {
-                        syn::PathArguments::AngleBracketed(ref args) => {
-                            if let Some(syn::GenericArgument::Type(ty)) = args.args.first() {
-                                match ty {
-                                    syn::Type::Path(ref t) => t
-                                        .path
-                                        .get_ident()
-                                        .and_then(|ident| (*ident == "Id").then_some((i, true))),
-                                    _ => None,
-                                }
-                            } else {
-                                None
-                            }
-                        }
-                        _ => None,
-                    })
-                },
-                |ident| (*ident == "Id").then_some((i, false)),
-            ),
-            _ => None,
+        .filter_map(|(i, f)| {
+            let sample = f.ty.to_token_stream().to_string().replace(' ', "");
+
+            if sample == "Id" {
+                Some((i, false))
+            } else if sample.contains("<Id>")
+                || sample.contains("<Id,")
+                || sample.contains(",Id,")
+                || sample.contains(",Id>")
+            {
+                Some((i, true))
+            } else {
+                None
+            }
         })
         .collect()
 }

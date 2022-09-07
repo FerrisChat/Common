@@ -92,7 +92,7 @@ pub struct GuildFolder<Id: Snowflake = u128> {
 
 /// Represents user info about the client. This has other information that is not available to the
 /// public, such as emails, guilds, and relationships (friends and blocked users).
-#[derive(Clone, Debug, Serialize)]
+#[derive(CastSnowflakes, Clone, Debug, Serialize)]
 pub struct ClientUser<Id: Snowflake = u128> {
     /// The public user info about the client.
     #[serde(flatten)]
@@ -116,82 +116,6 @@ pub struct ClientUser<Id: Snowflake = u128> {
     pub folders: Option<Vec<GuildFolder<Id>>>,
     /// A list of relationships that the client has with other users.
     pub relationships: Vec<Relationship<Id>>,
-}
-
-impl CastSnowflakes for ClientUser<u128> {
-    type U128Result = Self;
-    type StringResult = ClientUser<String>;
-
-    fn into_u128_ids(self) -> Self::U128Result
-    where
-        Self: Sized,
-    {
-        self
-    }
-
-    fn into_string_ids(self) -> Self::StringResult
-    where
-        Self: Sized,
-    {
-        ClientUser {
-            user: self.user.into_string_ids(),
-            email: self.email,
-            guilds: self
-                .guilds
-                .into_iter()
-                .map(CastSnowflakes::into_string_ids)
-                .collect(),
-            folders: self.folders.map(|folders| {
-                folders
-                    .into_iter()
-                    .map(CastSnowflakes::into_string_ids)
-                    .collect()
-            }),
-            relationships: self
-                .relationships
-                .into_iter()
-                .map(CastSnowflakes::into_string_ids)
-                .collect(),
-        }
-    }
-}
-
-impl CastSnowflakes for ClientUser<String> {
-    type U128Result = ClientUser<u128>;
-    type StringResult = Self;
-
-    fn into_u128_ids(self) -> Self::U128Result
-    where
-        Self: Sized,
-    {
-        ClientUser {
-            user: self.user.into_u128_ids(),
-            email: self.email,
-            guilds: self
-                .guilds
-                .into_iter()
-                .map(CastSnowflakes::into_u128_ids)
-                .collect(),
-            folders: self.folders.map(|folders| {
-                folders
-                    .into_iter()
-                    .map(CastSnowflakes::into_u128_ids)
-                    .collect()
-            }),
-            relationships: self
-                .relationships
-                .into_iter()
-                .map(CastSnowflakes::into_u128_ids)
-                .collect(),
-        }
-    }
-
-    fn into_string_ids(self) -> Self::StringResult
-    where
-        Self: Sized,
-    {
-        self
-    }
 }
 
 /// Represents the type of relationship a user has with another user.
