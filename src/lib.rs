@@ -6,6 +6,7 @@
     clippy::wildcard_imports
 )]
 
+pub mod http;
 pub mod models;
 pub mod util;
 
