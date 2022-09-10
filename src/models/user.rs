@@ -62,6 +62,8 @@ bitflags::bitflags! {
         const BUG_HUNTER = 1 << 11;
         /// The user is the winner of a FerrisChat event.
         const EVENT_WINNER = 1 << 12;
+        /// The user has a verified email address.
+        const VERIFIED_EMAIL = 1 << 13;
     }
 }
 
