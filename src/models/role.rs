@@ -1,5 +1,5 @@
-use crate::crate_prelude::*;
 use super::Permissions;
+use crate::crate_prelude::*;
 use serde::{Deserialize, Serialize};
 
 /// Represents either a solid role color or a gradient of role colors.
@@ -43,7 +43,7 @@ pub struct Role<Id: Snowflake = u128> {
 }
 
 bitflags::bitflags! {
-    #[derive(Debug)]
+    #[derive(Default)]
     pub struct RoleFlags: u32 {
         /// Whether the role is hoisted, or shown separately, in member list.
         const HOISTED = 1 << 0;
