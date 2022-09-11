@@ -33,8 +33,9 @@ pub struct Role<Id: Snowflake = u128> {
     pub guild_id: Id,
     /// The name of the role.
     pub name: String,
-    /// The color of the role. Could be a solid color or a gradient.
-    pub color: RoleColor,
+    /// The color of the role. Could be a solid color or a gradient. THis is `None` if the color is
+    /// the default color.
+    pub color: Option<RoleColor>,
     /// The permissions users with this role have.
     pub permissions: Permissions,
     /// A bitmask of flags representing extra metadata about the role.
