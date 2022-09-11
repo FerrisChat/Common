@@ -1,4 +1,4 @@
-use super::user::User;
+use super::{Role, User};
 use crate::{crate_prelude::*, Timestamp};
 use serde::Serialize;
 
@@ -61,6 +61,14 @@ pub struct Guild<Id: Snowflake = u128> {
     /// * The client receives a ready event containing all guild data through the gateway.
     /// * The client receives a guild create event through the gateway.
     pub members: Option<Vec<Member<Id>>>,
+    /// A list of resolved roles in the guild.
+    ///
+    /// This is only available during the following events:
+    /// * Fetching the guild directly
+    /// * The client retrieves the response after a request to join a guild through an invite
+    /// * The client receives a ready event containing all guild data through the gateway.
+    /// * The client receives a guild create event through the gateway.
+    pub roles: Option<Vec<Role<Id>>>,
 }
 
 impl<Id: Snowflake> Guild<Id> {

@@ -2,9 +2,12 @@
 
 pub mod guild;
 pub mod permissions;
+pub mod role;
 pub mod user;
 
 pub use guild::*;
+pub use permissions::*;
+pub use role::*;
 pub use user::*;
 
 /// An enumeration for the type of a model, used in a snowflake.
