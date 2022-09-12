@@ -128,6 +128,68 @@ impl serde::de::Visitor<'_> for U32Visitor {
     }
 }
 
+/// A serde value that distinguishes between null and missing values.
+#[derive(Clone, Debug, Default)]
+pub enum Maybe<T> {
+    /// The field is absent.
+    #[default]
+    Absent,
+    /// The field is present but is set to `null`.
+    Null,
+    /// The field is present and is set to a value, `T`.
+    Value(T),
+}
+
+impl<T> Maybe<T> {
+    /// Returns `true` if the value is `Absent`.
+    pub const fn is_absent(&self) -> bool {
+        matches!(self, Self::Absent)
+    }
+}
+
+impl<T> From<Option<T>> for Maybe<T> {
+    fn from(opt: Option<T>) -> Self {
+        opt.map_or(Self::Null, Self::Value)
+    }
+}
+
+impl<T> From<Maybe<T>> for Option<T> {
+    fn from(maybe: Maybe<T>) -> Self {
+        match maybe {
+            Maybe::Value(v) => Some(v),
+            _ => None,
+        }
+    }
+}
+
+impl<'de, T> serde::Deserialize<'de> for Maybe<T>
+where
+    T: serde::Deserialize<'de>,
+{
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        Option::deserialize(deserializer).map(Into::into)
+    }
+}
+
+impl<T: serde::Serialize> serde::Serialize for Maybe<T> {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        match self {
+            Self::Null => serializer.serialize_none(),
+            Self::Value(v) => v.serialize(serializer),
+            Self::Absent => Err(serde::ser::Error::custom(
+                "Maybe fields need to be annotated with \
+                    `#[serde(default, skip_serializing_if = \"Maybe::is_Absent\")]`",
+            )),
+        }
+    }
+}
+
 pub type Timestamp = chrono::DateTime<chrono::Utc>;
 
 /// A prelude of commonly used traits. This is usually used with a glob-import, i.e.
@@ -137,7 +199,7 @@ pub mod prelude {
 }
 
 pub(crate) mod crate_prelude {
-    pub use crate::{CastSnowflakes, Snowflake};
+    pub use crate::{CastSnowflakes, Maybe, Snowflake};
     pub use macros::CastSnowflakes;
     pub use serde_for_bitflags;
 }
