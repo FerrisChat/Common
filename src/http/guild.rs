@@ -1,5 +1,5 @@
 use crate::crate_prelude::*;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 /// The payload sent to create a new guild.
 #[derive(Clone, Debug, Deserialize)]
