@@ -26,6 +26,16 @@ impl<Id: Snowflake> Member<Id> {
     }
 }
 
+/// Represents member counts for a guild.
+#[derive(Clone, Debug, Serialize)]
+pub struct GuildMemberCount {
+    /// The total number of members in the guild.
+    pub total: u32,
+    /// The number of members that are online. If this was part of a partial guild object, then
+    /// this will be `None`.
+    pub online: Option<u32>,
+}
+
 /// Represents a guild with partial information, sometimes referred to as a server.
 #[derive(CastSnowflakes, Clone, Debug, Serialize)]
 pub struct PartialGuild<Id: Snowflake = u128> {
@@ -33,10 +43,17 @@ pub struct PartialGuild<Id: Snowflake = u128> {
     pub id: Id,
     /// The name of the guild.
     pub name: String,
+    /// The description of the guild.
+    pub description: Option<String>,
     /// The URL of the icon of the guild.
     pub icon: Option<String>,
+    /// The URL of the banner of the guild.
+    pub banner: Option<String>,
     /// The ID of the owner of the guild.
     pub owner_id: Id,
+    /// The amount of members in the guild. This could be `None` at times. For partial guilds, the
+    /// `online` field of this will also be `None`.
+    pub member_count: Option<GuildMemberCount>,
 }
 
 /// Represents a guild with all information, sometimes referred to as a server.
