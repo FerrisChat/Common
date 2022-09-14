@@ -54,6 +54,8 @@ pub struct PartialGuild<Id: Snowflake = u128> {
     /// The amount of members in the guild. This could be `None` at times. For partial guilds, the
     /// `online` field of this will also be `None`.
     pub member_count: Option<GuildMemberCount>,
+    /// Whether the guild is publically discoverable.
+    pub public: bool,
 }
 
 /// Represents a guild with all information, sometimes referred to as a server.
@@ -86,6 +88,12 @@ pub struct Guild<Id: Snowflake = u128> {
     /// * The client receives a ready event containing all guild data through the gateway.
     /// * The client receives a guild create event through the gateway.
     pub roles: Option<Vec<Role<Id>>>,
+    /// The vanity URL code of the guild. This solely includes the code, not the full URL.
+    /// This is `None` if the guild does not have a vanity URL.
+    ///
+    /// Guilds have the ability to set vanity URLs once they surpass 100 non-bot members *and* have
+    /// their visibility set to public. The vanity URL code can be between 3 and 32 characters long.
+    pub vanity_url: Option<String>,
 }
 
 impl<Id: Snowflake> Guild<Id> {
