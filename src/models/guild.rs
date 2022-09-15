@@ -64,14 +64,6 @@ pub struct Guild<Id: Snowflake = u128> {
     /// The information available to partial guilds, including the name and ID.
     #[serde(flatten)]
     pub partial: PartialGuild<Id>,
-    /// The resolved owner as a user object.
-    ///
-    /// This is only available during the following events:
-    /// * Fetching the guild directly
-    /// * The client retrieves the response after a request to join a guild through an invite
-    /// * The client receives a ready event containing all guild data through the gateway.
-    /// * The client receives a guild create event through the gateway.
-    pub owner: Option<User<Id>>,
     /// A list of resolved members in the guild.
     ///
     /// This is only available during the following events:
