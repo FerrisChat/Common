@@ -51,11 +51,11 @@ pub struct PartialGuild<Id: Snowflake = u128> {
     pub banner: Option<String>,
     /// The ID of the owner of the guild.
     pub owner_id: Id,
+    /// Extra information about the guild represented through bitflags.
+    pub flags: GuildFlags,
     /// The amount of members in the guild. This could be `None` at times. For partial guilds, the
     /// `online` field of this will also be `None`.
     pub member_count: Option<GuildMemberCount>,
-    /// Whether the guild is publically discoverable.
-    pub public: bool,
 }
 
 /// Represents a guild with all information, sometimes referred to as a server.
@@ -117,3 +117,19 @@ impl<Id: Snowflake> Guild<Id> {
         &self.partial.owner_id
     }
 }
+
+bitflags::bitflags! {
+    /// Represents extra metadata and features about a guild in a bitmask.
+    pub struct GuildFlags: u32 {
+        /// The guild is a public guild.
+        const PUBLIC = 1 << 0;
+        /// The guild is a verified or official guild.
+        const VERIFIED = 1 << 1;
+        /// The guild has a vanity invite URL.
+        const VANITY_URL = 1 << 2;
+        /// The guild has been confirmed as spam or used as malicious intent.
+        const SPAM = 1 << 3;
+    }
+}
+
+serde_for_bitflags!(GuildFlags);
