@@ -2,12 +2,22 @@ use super::{Channel, Role, User};
 use crate::{crate_prelude::*, Timestamp};
 use serde::Serialize;
 
+/// Potentially a partial user.
+#[derive(CastSnowflakes, Clone, Debug, Serialize)]
+#[serde(untagged)]
+pub enum MaybePartialUser<Id: Snowflake = u128> {
+    /// A user with full information.
+    Full(User<Id>),
+    /// A user with only an ID.
+    Partial { id: Id },
+}
+
 /// Represents a member of a guild. Members are user objects associated with a guild.
 #[derive(CastSnowflakes, Clone, Debug, Serialize)]
 pub struct Member<Id: Snowflake = u128> {
-    /// The user associated with this member.
+    /// The user associated with this member. This could be `None` in some cases.
     #[serde(flatten)]
-    pub user: User<Id>,
+    pub user: MaybePartialUser<Id>,
     /// The ID of the guild this member is in.
     pub guild_id: Id,
     /// The nickname of the member. `None` if the member has no nickname.
@@ -21,8 +31,13 @@ pub struct Member<Id: Snowflake = u128> {
 impl<Id: Snowflake> Member<Id> {
     /// The display name of the member. This is the nickname if the member has one,
     /// else the username.
-    pub fn display_name(&self) -> &str {
-        self.nick.as_deref().unwrap_or(&self.user.username)
+    ///
+    /// If the user information is not available, this will return `None`.
+    pub fn display_name(&self) -> Option<&str> {
+        match &self.user {
+            MaybePartialUser::Full(user) => Some(self.nick.as_deref().unwrap_or(&user.username)),
+            MaybePartialUser::Partial { .. } => None,
+        }
     }
 }
 
