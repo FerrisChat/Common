@@ -117,6 +117,8 @@ pub struct DMChannel<Id: Snowflake = u128> {
     pub kind: DMChannelType,
     /// The ID of the last message sent in the channel.
     pub last_message_id: Option<Id>,
+    /// The name of the group chat. Only applies to group DMs.
+    pub name: Option<String>,
     /// The topic or description about the channel. Only available in group DMs.
     pub topic: Option<String>,
     /// The URL of the small icon of the channel. `None` if the group DM has no icon. This is only
