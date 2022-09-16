@@ -22,8 +22,8 @@ pub struct Member<Id: Snowflake = u128> {
     pub guild_id: Id,
     /// The nickname of the member. `None` if the member has no nickname.
     pub nick: Option<String>,
-    /// A list of IDs of the roles that the member has.
-    pub roles: Vec<Id>,
+    /// A list of IDs of the roles that the member has. This could be `None` in some cases.
+    pub roles: Option<Vec<Id>>,
     /// The time that the member joined the guild.
     pub joined_at: Timestamp,
 }
