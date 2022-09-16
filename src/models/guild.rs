@@ -1,4 +1,4 @@
-use super::{Channel, Role, User};
+use super::{GuildChannel, Role, User};
 use crate::{crate_prelude::*, Timestamp};
 use serde::Serialize;
 
@@ -102,7 +102,7 @@ pub struct Guild<Id: Snowflake = u128> {
     /// * The client retrieves the response after a request to join a guild through an invite
     /// * The client receives a ready event containing all guild data through the gateway.
     /// * The client receives a guild create event through the gateway.
-    pub channels: Option<Vec<Channel<Id>>>,
+    pub channels: Option<Vec<GuildChannel<Id>>>,
     /// The vanity URL code of the guild. This solely includes the code, not the full URL.
     /// This is `None` if the guild does not have a vanity URL.
     ///

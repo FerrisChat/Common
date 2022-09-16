@@ -1,6 +1,6 @@
 #![allow(clippy::use_self)]
 
-use super::guild::PartialGuild;
+use super::{DMChannel, PartialGuild};
 use crate::crate_prelude::*;
 use serde::{Deserialize, Serialize};
 
@@ -118,6 +118,8 @@ pub struct ClientUser<Id: Snowflake = u128> {
     pub folders: Option<Vec<GuildFolder<Id>>>,
     /// A list of relationships that the client has with other users.
     pub relationships: Vec<Relationship<Id>>,
+    /// A list of DM channels that the client has open.
+    pub dm_channels: Vec<DMChannel<Id>>,
 }
 
 /// Represents the type of relationship a user has with another user.
