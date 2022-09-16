@@ -129,5 +129,5 @@ pub struct DMChannel<Id: Snowflake = u128> {
     /// The user IDs of the recipients of the DM. For normal DMs, this is an array consisting of two
     /// elements - you and the other user. For group DMs, this is an array consisting of all the
     /// users in the group DM.
-    pub recipients: Vec<Id>,
+    pub recipient_ids: Vec<Id>,
 }
