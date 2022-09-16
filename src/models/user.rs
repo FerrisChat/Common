@@ -67,7 +67,7 @@ bitflags::bitflags! {
     }
 }
 
-serde_for_bitflags!(UserFlags);
+serde_for_bitflags!(u32: UserFlags);
 
 /// Represents information such as the name and color of a guild folder.
 /// This is only shown in the client's UI.

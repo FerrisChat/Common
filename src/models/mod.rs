@@ -1,10 +1,12 @@
 //! Common data structures used by FerrisChat.
 
+pub mod channel;
 pub mod guild;
 pub mod permissions;
 pub mod role;
 pub mod user;
 
+pub use channel::*;
 pub use guild::*;
 pub use permissions::*;
 pub use role::*;

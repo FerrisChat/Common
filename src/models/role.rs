@@ -1,4 +1,4 @@
-use super::Permissions;
+use super::PermissionPair;
 use crate::crate_prelude::*;
 use serde::{Deserialize, Serialize};
 
@@ -37,7 +37,14 @@ pub struct Role<Id: Snowflake = u128> {
     /// the default color.
     pub color: Option<RoleColor>,
     /// The permissions users with this role have.
-    pub permissions: Permissions,
+    pub permissions: PermissionPair,
+    /// The position of this role in the role hierarchy. The lower the number, the lower the role.
+    /// The default role always has a position of 0.
+    ///
+    /// The backend will try its best to keep all role positions unique, but on the event two
+    /// collide due to something such as a data race, then the true position of these roles will
+    /// not be predictable, and will like be in the order of model creation.
+    pub position: u16,
     /// A bitmask of flags representing extra metadata about the role.
     pub flags: RoleFlags,
 }
@@ -56,4 +63,4 @@ bitflags::bitflags! {
     }
 }
 
-serde_for_bitflags!(RoleFlags);
+serde_for_bitflags!(u32: RoleFlags);

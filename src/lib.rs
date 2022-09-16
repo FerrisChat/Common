@@ -57,6 +57,32 @@ impl CastSnowflakes for Vec<String> {
     }
 }
 
+impl CastSnowflakes for Option<u128> {
+    type U128Result = Self;
+    type StringResult = Option<String>;
+
+    fn into_u128_ids(self) -> Self::U128Result {
+        self
+    }
+
+    fn into_string_ids(self) -> Self::StringResult {
+        self.map(|id| id.to_string())
+    }
+}
+
+impl CastSnowflakes for Option<String> {
+    type U128Result = Option<u128>;
+    type StringResult = Self;
+
+    fn into_u128_ids(self) -> Self::U128Result {
+        self.map(|id| id.parse().unwrap())
+    }
+
+    fn into_string_ids(self) -> Self::StringResult {
+        self
+    }
+}
+
 impl<T: CastSnowflakes> CastSnowflakes for Vec<T> {
     type U128Result = Vec<T::U128Result>;
     type StringResult = Vec<T::StringResult>;
@@ -89,7 +115,7 @@ impl<T: CastSnowflakes> CastSnowflakes for Option<T> {
 
 #[macro_export]
 macro_rules! serde_for_bitflags {
-    ($t:ty) => {
+    (u32: $t:ty) => {
         impl serde::Serialize for $t {
             fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
             where
@@ -110,23 +136,52 @@ macro_rules! serde_for_bitflags {
             }
         }
     };
+    (i64: $t:ty) => {
+        impl serde::Serialize for $t {
+            fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+            where
+                S: serde::Serializer,
+            {
+                serializer.serialize_i64(self.bits)
+            }
+        }
+
+        impl<'de> serde::Deserialize<'de> for $t {
+            fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                Ok(Self {
+                    bits: deserializer.deserialize_i64($crate::I64Visitor)?,
+                })
+            }
+        }
+    };
 }
 
-pub(crate) struct U32Visitor;
-impl serde::de::Visitor<'_> for U32Visitor {
-    type Value = u32;
+macro_rules! visitor {
+    ($name:ident, $t:ty, $m:ident, $bounds:literal) => {
+        pub(crate) struct $name;
 
-    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-        formatter.write_str("an integer between 0 and 2^32 - 1")
-    }
+        impl serde::de::Visitor<'_> for $name {
+            type Value = $t;
 
-    fn visit_u32<E>(self, v: u32) -> Result<Self::Value, E>
-    where
-        E: serde::de::Error,
-    {
-        Ok(v)
-    }
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str(concat!("an integer between ", $bounds))
+            }
+
+            fn $m<E>(self, v: $t) -> Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                Ok(v)
+            }
+        }
+    };
 }
+
+visitor!(U32Visitor, u32, visit_u32, "0 and 2^32 - 1");
+visitor!(I64Visitor, i64, visit_i64, "-2^63 and 2^63 - 1");
 
 /// A serde value that distinguishes between null and missing values.
 #[derive(Clone, Debug, Default)]
