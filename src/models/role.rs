@@ -20,7 +20,7 @@ pub enum RoleColor {
     /// from black to white.
     Gradient {
         /// The gradient of the role.
-        value: Vec<(u32, u32)>,
+        value: Vec<(u32, u8)>,
     },
 }
 
