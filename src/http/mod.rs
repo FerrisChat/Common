@@ -6,11 +6,14 @@ pub use auth::*;
 pub use guild::*;
 pub use user::*;
 
+use crate::crate_prelude::*;
+use serde::Serialize;
+
 /// An error response.
-#[derive(Debug, serde::Serialize)]
+#[derive(CastSnowflakes, Debug, Serialize)]
 #[serde(tag = "type")]
 #[serde(rename_all = "snake_case")]
-pub enum Error {
+pub enum Error<Id: Snowflake = u128> {
     /// Internal server error occured, this is likely a bug.
     InternalError {
         /// What caused the error. `None` if unknown.
@@ -78,6 +81,8 @@ pub enum Error {
     },
     /// You tried accessing or modifying data of a guild the user is not a member of.
     NotMember {
+        /// The ID of the guild you are not a member of.
+        guild_id: Id,
         /// The error message.
         message: &'static str,
     },

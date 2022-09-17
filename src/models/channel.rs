@@ -35,6 +35,17 @@ pub enum GuildChannelType {
     Voice,
 }
 
+impl<T: AsRef<str>> From<T> for GuildChannelType {
+    fn from(value: T) -> Self {
+        match value.as_ref() {
+            "text" => Self::Text,
+            "announcement" => Self::Announcement,
+            "voice" => Self::Voice,
+            _ => unreachable!(),
+        }
+    }
+}
+
 /// Represents a channel in a guild.
 #[derive(CastSnowflakes, Clone, Debug, Serialize)]
 pub struct GuildChannel<Id: Snowflake = u128> {
@@ -105,6 +116,16 @@ pub enum DMChannelType {
     DM,
     /// A group chat consisting of multiple users.
     Group,
+}
+
+impl<T: AsRef<str>> From<T> for DMChannelType {
+    fn from(value: T) -> Self {
+        match value.as_ref() {
+            "dm" => Self::DM,
+            "group" => Self::Group,
+            _ => unreachable!(),
+        }
+    }
 }
 
 /// Represents a direct-message-like channel that does not live in a guild.
