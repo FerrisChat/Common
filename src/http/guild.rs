@@ -42,3 +42,17 @@ pub struct DeleteGuildPayload {
     /// The password of the user.
     pub password: String,
 }
+
+/// The query parameters used to specify what information to return when fetching a guild.
+#[derive(Clone, Debug, Deserialize)]
+pub struct GetGuildQuery {
+    /// Whether to resolve the guild's channels in the response.
+    #[serde(default)]
+    pub channels: bool,
+    /// Whether to resolve the guild's members in the response.
+    #[serde(default)]
+    pub members: bool,
+    /// Whether to resolve the guild's roles in the response.
+    #[serde(default)]
+    pub roles: bool,
+}
