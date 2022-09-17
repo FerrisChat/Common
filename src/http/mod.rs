@@ -76,4 +76,9 @@ pub enum Error {
         /// The error message.
         message: String,
     },
+    /// You tried accessing or modifying data of a guild the user is not a member of.
+    NotMember {
+        /// The error message.
+        message: &'static str,
+    },
 }

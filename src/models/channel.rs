@@ -17,10 +17,10 @@ pub enum Channel<Id: Snowflake = u128> {
 pub struct PermissionOverwrite<Id: Snowflake = u128> {
     /// The ID of the role or user this overwrite applies to. The model type can be extracted from
     /// the ID.
-    id: Id,
+    pub id: Id,
     /// The permissions this overwrite grants or denies.
     #[serde(flatten)]
-    permissions: PermissionPair,
+    pub permissions: PermissionPair,
 }
 
 /// Represents the type of guild channel.

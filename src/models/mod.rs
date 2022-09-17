@@ -31,3 +31,19 @@ pub enum ModelType {
     /// Unknown model.
     Unknown = !0,
 }
+
+impl ModelType {
+    /// Returns the corresponding model type for the given integer.
+    #[must_use]
+    pub const fn from_u8(value: u8) -> Self {
+        match value {
+            0 => Self::Guild,
+            1 => Self::User,
+            2 => Self::Channel,
+            3 => Self::Message,
+            4 => Self::Role,
+            5 => Self::Internal,
+            _ => Self::Unknown,
+        }
+    }
+}
