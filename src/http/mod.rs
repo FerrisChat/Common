@@ -81,4 +81,9 @@ pub enum Error {
         /// The error message.
         message: &'static str,
     },
+    /// Missing permissions to perform an action.
+    MissingPermissions {
+        /// The error message.
+        message: &'static str,
+    },
 }

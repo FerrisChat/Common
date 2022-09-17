@@ -51,10 +51,14 @@ pub fn calculate_permissions(
     }
 
     if let Some(overwrites) = overwrites {
-        for overwrite in overwrites
+        let mut role_overwrites = overwrites
             .iter()
-            .filter(|o| roles.iter().any(|r| r.id == o.id))
-        {
+            .filter_map(|o| roles.iter().find(|r| r.id == o.id).map(|r| (o, r.position)))
+            .collect::<Vec<_>>();
+
+        role_overwrites.sort_by_key(|(_, pos)| *pos);
+
+        for (overwrite, _) in role_overwrites {
             perms |= overwrite.permissions.allow;
             perms &= !overwrite.permissions.deny;
         }
