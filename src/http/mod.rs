@@ -91,4 +91,24 @@ pub enum Error<Id: Snowflake = u128> {
         /// The error message.
         message: &'static str,
     },
+    /// You must be the owner of the guild to perform this action.
+    NotOwner {
+        /// The ID of the guild you are not the owner of.
+        guild_id: Id,
+        /// The error message.
+        message: &'static str,
+    },
+    /// You are missing the request body in an endpoint that requires it. This is commonly JSON or
+    /// MsgPack.
+    MissingBody {
+        /// The error message.
+        message: &'static str,
+    },
+    /// You are missing a required field in the request body.
+    MissingField {
+        /// The name of the missing field.
+        field: &'static str,
+        /// The error message.
+        message: &'static str,
+    },
 }
