@@ -11,9 +11,22 @@ pub mod models;
 pub mod util;
 
 /// A trait that is implemented on all types that can be used as a snowflake.
-pub trait Snowflake: Clone {}
-impl Snowflake for u128 {}
-impl Snowflake for String {}
+pub trait Snowflake: Clone + ToString + Send + Sync + Sized {
+    /// Returns the ID as a u128.
+    fn to_u128(&self) -> u128;
+}
+
+impl Snowflake for u128 {
+    fn to_u128(&self) -> u128 {
+        *self
+    }
+}
+
+impl Snowflake for String {
+    fn to_u128(&self) -> u128 {
+        self.parse().unwrap()
+    }
+}
 
 /// A model that can be converted between stringified snowflakes and u128 snowflakes.
 pub trait CastSnowflakes {
@@ -31,55 +44,16 @@ pub trait CastSnowflakes {
         Self: Sized;
 }
 
-impl CastSnowflakes for Vec<u128> {
-    type U128Result = Self;
-    type StringResult = Vec<String>;
+impl<T: Snowflake> CastSnowflakes for T {
+    type U128Result = u128;
+    type StringResult = String;
 
     fn into_u128_ids(self) -> Self::U128Result {
-        self
+        self.to_u128()
     }
 
     fn into_string_ids(self) -> Self::StringResult {
-        self.into_iter().map(|id| id.to_string()).collect()
-    }
-}
-
-impl CastSnowflakes for Vec<String> {
-    type U128Result = Vec<u128>;
-    type StringResult = Self;
-
-    fn into_u128_ids(self) -> Self::U128Result {
-        self.into_iter().map(|id| id.parse().unwrap()).collect()
-    }
-
-    fn into_string_ids(self) -> Self::StringResult {
-        self
-    }
-}
-
-impl CastSnowflakes for Option<u128> {
-    type U128Result = Self;
-    type StringResult = Option<String>;
-
-    fn into_u128_ids(self) -> Self::U128Result {
-        self
-    }
-
-    fn into_string_ids(self) -> Self::StringResult {
-        self.map(|id| id.to_string())
-    }
-}
-
-impl CastSnowflakes for Option<String> {
-    type U128Result = Option<u128>;
-    type StringResult = Self;
-
-    fn into_u128_ids(self) -> Self::U128Result {
-        self.map(|id| id.parse().unwrap())
-    }
-
-    fn into_string_ids(self) -> Self::StringResult {
-        self
+        self.to_string()
     }
 }
 

@@ -79,7 +79,7 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                             let field = f.ident.as_ref().unwrap();
                             if targets.contains(&(field, false)) {
                                 (
-                                    quote! { #field: self.#field.parse().unwrap() },
+                                    quote! { #field: self.#field.to_u128() },
                                     quote! { #field: self.#field.to_string() },
                                 )
                             } else if targets.contains(&(field, true)) {
@@ -97,33 +97,20 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                         .unzip::<_, _, Vec<_>, Vec<_>>();
 
                     quote! {
-                        impl CastSnowflakes for #name<u128> {
-                            type U128Result = #name<u128>;
-                            type StringResult = #name<String>;
-
-                            fn into_u128_ids(self) -> #name<u128> where Self: Sized {
-                                self
-                            }
-
-                            fn into_string_ids(self) -> #name<String> where Self: Sized {
-                                #name {
-                                    #( #string_fields ),*
-                                }
-                            }
-                        }
-
-                        impl CastSnowflakes for #name<String> {
+                        impl<T: Snowflake> CastSnowflakes for #name<T> {
                             type U128Result = #name<u128>;
                             type StringResult = #name<String>;
 
                             fn into_u128_ids(self) -> #name<u128> where Self: Sized {
                                 #name {
-                                    #( #u128_fields ),*
+                                    #(#u128_fields),*
                                 }
                             }
 
                             fn into_string_ids(self) -> #name<String> where Self: Sized {
-                                self
+                                #name {
+                                    #(#string_fields),*
+                                }
                             }
                         }
                     }
@@ -137,7 +124,7 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                             if targets.contains(&(i, false)) {
                                 (
                                     quote! { self.#idx.to_string() },
-                                    quote! { self.#idx.parse().unwrap() },
+                                    quote! { self.#idx.to_u128() },
                                 )
                             } else if targets.contains(&(i, true)) {
                                 (
@@ -151,20 +138,7 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                         .unzip::<_, _, Vec<_>, Vec<_>>();
 
                     quote! {
-                        impl CastSnowflakes for #name<u128> {
-                            type U128Result = #name<u128>;
-                            type StringResult = #name<String>;
-
-                            fn into_u128_ids(self) -> #name<u128> where Self: Sized {
-                                self
-                            }
-
-                            fn into_string_ids(self) -> #name<String> where Self: Sized {
-                                #name(#(#entities_string),*)
-                            }
-                        }
-
-                        impl CastSnowflakes for #name<String> {
+                        impl<T: Snowflake> CastSnowflakes for #name<T> {
                             type U128Result = #name<u128>;
                             type StringResult = #name<String>;
 
@@ -173,7 +147,7 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                             }
 
                             fn into_string_ids(self) -> #name<String> where Self: Sized {
-                                self
+                                #name(#(#entities_string),*)
                             }
                         }
                     }
@@ -205,7 +179,7 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
 
                                     if targets.contains(&(field, false)) {
                                         (
-                                            quote! { #field: #field.parse().unwrap() },
+                                            quote! { #field: #field.to_u128() },
                                             quote! { #field: #field.to_string() },
                                         )
                                     } else if targets.contains(&(field, true)) {
@@ -249,7 +223,7 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                                         (
                                             quote! { #idx.to_string() },
                                             (
-                                                quote! { #idx.parse().unwrap() },
+                                                quote! { #idx.to_u128() },
                                                 quote! { #idx },
                                             ),
                                         )
@@ -286,29 +260,16 @@ fn impl_cast_snowflakes(ast: &syn::DeriveInput) -> TokenStream {
                     .unzip::<_, _, Vec<_>, Vec<_>>();
 
                 quote! {
-                    impl CastSnowflakes for #name<u128> {
+                    impl<T: Snowflake> CastSnowflakes for #name<T> {
                         type U128Result = #name<u128>;
-                            type StringResult = #name<String>;
+                        type StringResult = #name<String>;
 
                         fn into_u128_ids(self) -> #name<u128> where Self: Sized {
-                            self
+                            match self { #( #variants_u128 )* }
                         }
 
                         fn into_string_ids(self) -> #name<String> where Self: Sized {
                             match self { #(#variants_string)* }
-                        }
-                    }
-
-                    impl CastSnowflakes for #name<String> where Self: Sized {
-                        type U128Result = #name<u128>;
-                        type StringResult = #name<String>;
-
-                        fn into_u128_ids(self) -> #name<u128> {
-                            match self { #(#variants_u128)* }
-                        }
-
-                        fn into_string_ids(self) -> #name<String> where Self: Sized {
-                            self
                         }
                     }
                 }

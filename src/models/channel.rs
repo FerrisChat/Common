@@ -33,6 +33,9 @@ pub enum GuildChannelType {
     Announcement,
     /// A voice channel.
     Voice,
+    /// A category of channels. This isn't really a channel, but it shares many of the same
+    /// properties of one.
+    Category,
 }
 
 impl<T: AsRef<str>> From<T> for GuildChannelType {
@@ -41,8 +44,20 @@ impl<T: AsRef<str>> From<T> for GuildChannelType {
             "text" => Self::Text,
             "announcement" => Self::Announcement,
             "voice" => Self::Voice,
+            "category" => Self::Category,
             _ => unreachable!(),
         }
+    }
+}
+
+impl ToString for GuildChannelType {
+    fn to_string(&self) -> String {
+        String::from(match self {
+            Self::Text => "text",
+            Self::Announcement => "announcement",
+            Self::Voice => "voice",
+            Self::Category => "category",
+        })
     }
 }
 
@@ -125,6 +140,15 @@ impl<T: AsRef<str>> From<T> for DMChannelType {
             "group" => Self::Group,
             _ => unreachable!(),
         }
+    }
+}
+
+impl ToString for DMChannelType {
+    fn to_string(&self) -> String {
+        String::from(match self {
+            Self::DM => "dm",
+            Self::Group => "group",
+        })
     }
 }
 

@@ -1,13 +1,15 @@
 pub mod auth;
+pub mod channel;
 pub mod guild;
 pub mod user;
 
 pub use auth::*;
+pub use channel::*;
 pub use guild::*;
 pub use user::*;
 
 use crate::crate_prelude::*;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 /// An error response.
 #[derive(CastSnowflakes, Debug, Serialize)]
@@ -111,4 +113,29 @@ pub enum Error<Id: Snowflake = u128> {
         /// The error message.
         message: &'static str,
     },
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum HybridSnowflake {
+    U128(u128),
+    String(String),
+}
+
+impl Snowflake for HybridSnowflake {
+    fn to_u128(&self) -> u128 {
+        match self {
+            Self::U128(id) => *id,
+            Self::String(id) => id.parse().unwrap(),
+        }
+    }
+}
+
+impl ToString for HybridSnowflake {
+    fn to_string(&self) -> String {
+        match self {
+            Self::U128(id) => id.to_string(),
+            Self::String(id) => id.clone(),
+        }
+    }
 }
