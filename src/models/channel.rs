@@ -176,3 +176,26 @@ pub struct DMChannel<Id: Snowflake = u128> {
     /// users in the group DM.
     pub recipient_ids: Vec<Id>,
 }
+
+/// Represents the type of any channel.
+#[derive(Copy, Clone, Debug, Deserialize, Serialize)]
+pub enum ChannelType {
+    /// A guild channel type.
+    Guild(GuildChannelType),
+    /// A DM channel type.
+    DM(DMChannelType),
+}
+
+impl<T: AsRef<str>> From<T> for ChannelType {
+    fn from(value: T) -> Self {
+        let value = value.as_ref();
+
+        match value {
+            "text" | "voice" | "category" | "announcement" => {
+                ChannelType::Guild(GuildChannelType::from(value))
+            }
+            "dm" | "group" => ChannelType::DM(DMChannelType::from(value)),
+            _ => unreachable!(),
+        }
+    }
+}
