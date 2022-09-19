@@ -93,10 +93,10 @@ pub enum Error<Id: Snowflake = u128> {
         /// The error message.
         message: &'static str,
     },
-    /// You must be the owner of the guild to perform this action.
+    /// You must be the owner of the guild or channel to perform this action.
     NotOwner {
-        /// The ID of the guild you are not the owner of.
-        guild_id: Id,
+        /// The ID of the guild or channel you are not the owner of.
+        id: Id,
         /// The error message.
         message: &'static str,
     },
