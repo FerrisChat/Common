@@ -87,6 +87,19 @@ impl<T: CastSnowflakes> CastSnowflakes for Option<T> {
     }
 }
 
+impl<T: CastSnowflakes> CastSnowflakes for Maybe<T> {
+    type U128Result = Maybe<T::U128Result>;
+    type StringResult = Maybe<T::StringResult>;
+
+    fn into_u128_ids(self) -> Self::U128Result {
+        self.map(CastSnowflakes::into_u128_ids)
+    }
+
+    fn into_string_ids(self) -> Self::StringResult {
+        self.map(CastSnowflakes::into_string_ids)
+    }
+}
+
 #[macro_export]
 macro_rules! serde_for_bitflags {
     (u32: $t:ty) => {
@@ -173,6 +186,15 @@ impl<T> Maybe<T> {
     /// Returns `true` if the value is `Absent`.
     pub const fn is_absent(&self) -> bool {
         matches!(self, Self::Absent)
+    }
+
+    /// Maps the inner value of `Maybe` to a new value.
+    pub fn map<U>(self, f: impl FnOnce(T) -> U) -> Maybe<U> {
+        match self {
+            Self::Value(v) => Maybe::Value(f(v)),
+            Self::Null => Maybe::Null,
+            Self::Absent => Maybe::Absent,
+        }
     }
 }
 

@@ -83,3 +83,40 @@ impl<Id: Snowflake> CreateChannelPayload<Id> {
         }
     }
 }
+
+/// The request body sent to modify a channel.
+#[derive(Clone, Debug, Deserialize)]
+pub struct EditChannelPayload {
+    /// The new name of the channel. If left blank, the name will not be changed. Takes effect for
+    /// all channels except for user DMs.
+    pub name: Option<String>,
+    /// The new topic or description of the channel. Explicitly setting this to `None` will clear
+    /// the topic. Only takes effect for text-based channels in guilds, or group chats.
+    pub topic: Maybe<String>,
+    /// The new icon URL of the channel. Explicitly setting this to `None` will clear the icon.
+    /// Takes effect for all channels except for user DMs.
+    pub icon: Maybe<String>,
+    /// The new user limit of the voice channel. Explicitly setting this to `None` will remove the
+    /// current limit, if there is any. Only takes effect for guild voice channels.
+    pub user_limit: Maybe<u16>,
+}
+
+/// The payload used per channel to specify its new position data.
+#[derive(CastSnowflakes, Clone, Debug, Deserialize)]
+pub struct EditChannelPositionPayload<Id: Snowflake = u128> {
+    /// The ID of the channel to modify.
+    pub id: Id,
+    /// The new position of the channel.
+    pub position: u16,
+    /// The new scope of the channel. If left blank, the scope will not be changed. If set to
+    /// `None`, the channel will be moved to the root of the channel list.
+    pub scope: Maybe<Id>,
+}
+
+/// The request body sent to modify channel positions.
+#[derive(CastSnowflakes, Clone, Debug, Deserialize)]
+#[serde(transparent)]
+pub struct EditChannelPositionsPayload<Id: Snowflake = u128> {
+    /// A list of channel positions to modify.
+    pub positions: Vec<EditChannelPositionPayload<Id>>,
+}
