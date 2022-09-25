@@ -2,12 +2,14 @@
 
 pub mod channel;
 pub mod guild;
+pub mod message;
 pub mod permissions;
 pub mod role;
 pub mod user;
 
 pub use channel::*;
 pub use guild::*;
+pub use message::*;
 pub use permissions::*;
 pub use role::*;
 pub use user::*;
