@@ -196,6 +196,11 @@ impl<T> Maybe<T> {
             Self::Absent => Maybe::Absent,
         }
     }
+
+    /// Turns this into an `Option`.
+    pub fn into_option(self) -> Option<T> {
+        self.into()
+    }
 }
 
 impl<T> From<Option<T>> for Maybe<T> {
